@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../CSS/Patient.css'
 import IMG from '../images/medical.jpg'
 
@@ -23,8 +24,8 @@ const Select = () => {
                             <h2 className='text-white bg-primary d-inline px-5 py-3 rounded-pill'>Register Now</h2>
                         </div>
                         <div className='mt-5'>
-                            <button className='btn btn-success p-5 m-3 fw-bold fs-2 shadow-lg'>Join as Patient</button>
-                            <button className='btn btn-success p-5 fw-bold fs-2 shadow-lg'>Join as Doctor</button>
+                            <Link to='/patient-signup'> <button className='btn btn-success p-5 m-3 fw-bold fs-2 shadow-lg'>Join as Patient</button></Link>
+                            <Link to='/doctor-signup'> <button className='btn btn-success p-5 fw-bold fs-2 shadow-lg'>Join as Doctor</button></Link>
                         </div>
                     </div>
                     
