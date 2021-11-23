@@ -13,13 +13,12 @@ const PatientSignup = () => {
     const [gender, setGender] = useState('')
     const [dateOfBirth, setDateOfBirth] = useState('')
     const [password, setPassword] = useState('')
-    const [district, setDistrict] = useState('')
 
     const dispatch = useDispatch()
 
     const submitHandler = (e) => {
         e.preventDefault()    
-        dispatch(PatientSignupAction(firstName, lastName, email, mobile, gender, dateOfBirth, password, district))   
+        dispatch(PatientSignupAction(firstName, lastName, email, mobile, gender, dateOfBirth, password))   
     }
     
     return (
@@ -92,14 +91,6 @@ const PatientSignup = () => {
                            value={dateOfBirth}
                            onChange={(e) => setDateOfBirth(e.target.value)}
                      />
-
-                    <label className="form-label"> District :</label>
-                    <input className='form-control mb-2'
-                           type='text' 
-                           placeholder='Enter Your District Name'
-                           value={district} 
-                           onChange={(e) => setDistrict(e.target.value)}
-                    />
 
                     <label className="form-label"> Password :</label>
                     <input className='form-control mb-2'

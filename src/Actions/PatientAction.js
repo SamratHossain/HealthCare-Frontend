@@ -3,7 +3,7 @@ import {PATIENT_SIGNUP_REQUEST,
         PATIENT_SIGNUP_SUCCESS,
         PATIENT_SIGNUP_FAILED} from '../Constants/PatientConstants'
 
-export const PatientSignupAction = (firstName, lastName, email, mobile, gender, dateOfBirth, password, district) => async(dispatch) => {
+export const PatientSignupAction = (firstName, lastName, email, mobile, gender, dateOfBirth, password) => async(dispatch) => {
     try{
         dispatch({
             type : PATIENT_SIGNUP_REQUEST
@@ -17,7 +17,7 @@ export const PatientSignupAction = (firstName, lastName, email, mobile, gender, 
 
         const data = await axios.post(
                      "/api/accounts/patient/signup/",
-                     {'FirstName':firstName, 'LastName':lastName, 'Email':email, 'Mobile':mobile, 'Gender':gender, 'DateOfBirth':dateOfBirth, 'Password':password, 'District':district},
+                     {'FirstName':firstName, 'LastName':lastName, 'Email':email, 'Mobile':mobile, 'Gender':gender, 'DateOfBirth':dateOfBirth, 'Password':password},
                      config
         )
 
