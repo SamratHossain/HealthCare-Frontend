@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {Link} from 'react-router-dom'
 import TitleNave from '../Components/TitleNave'
-import {PatientSignupAction} from '../Actions/PatientAction'
+import {PatientSignupAction} from '../Actions/UserActions'
 
 const PatientSignup = () => {
     const [firstName, setFirstName] = useState('')

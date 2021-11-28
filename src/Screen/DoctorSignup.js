@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 import TitleNave from '../Components/TitleNave'
-import {DoctorSignupAction} from '../Actions/DoctorAction'
+import {DoctorSignupAction} from '../Actions/UserActions'
 
 const DoctorSignup = () => {
     const [title, setTitle] = useState('')
@@ -36,8 +36,7 @@ const DoctorSignup = () => {
         }
     })
 
-    console.log(error)
-    
+
     
     const dispatch = useDispatch()
 
