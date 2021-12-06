@@ -11,10 +11,18 @@ const rootReducer = combineReducers({
     userLogin : UserLoginReducer,
 })
 
+const userTokenFromLocalStorage = localStorage.getItem('UserInfo')?
+                                  JSON.parse(localStorage.getItem('UserInfo')) : null
+
+const initialState = {
+    userLogin : {userToken : userTokenFromLocalStorage}
+}
+
 const middleware = [thunk]
 
 const store = createStore(
     rootReducer,
+    initialState,
     composeWithDevTools(
     applyMiddleware(...middleware)
         ))

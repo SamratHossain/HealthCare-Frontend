@@ -28,7 +28,6 @@ const DoctorSignup = () => {
     valid.map(err => {
         if(err=="EmailError"){
             EmailError = err
-            console.log(err)
         }else if(err=="NidOrPassportError"){
             NidOrPassportError = err
         }else if(err=="RegistrationError"){

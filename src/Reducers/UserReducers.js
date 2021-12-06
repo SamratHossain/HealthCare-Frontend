@@ -8,7 +8,9 @@ import {DOCTOR_SIGNUP_REQUEST,
         
         USER_LOGIN_REQUEST,
         USER_LOGIN_SUCCESS,
-        USER_LOGIN_FAILED
+        USER_LOGIN_FAILED,
+
+        USER_LOGOUT
     } from '../Constants/UserConstants'
 
 
@@ -83,7 +85,10 @@ export const UserLoginReducer = (state = {}, action) => {
                     loading : false,
                     error : action.payload
                 }
-            
+
+            case USER_LOGOUT:
+                return {}
+                    
             default:
                 return state
         }

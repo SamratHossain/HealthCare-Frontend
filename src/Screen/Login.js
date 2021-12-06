@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import TitleNave from '../Components/TitleNave'
 import { UserLoginAction } from '../Actions/UserActions'
 
@@ -14,6 +15,13 @@ const Login = () => {
     const userLogin = useSelector(state => state.userLogin)
     const {loading, userInfo, error} = userLogin
     
+    const history = useHistory()
+
+
+    if(userInfo){
+        history.push("/usercheck")
+    }
+
     const dispatch = useDispatch()
 
     const submitHandler = (e) => {

@@ -9,12 +9,14 @@ import { DOCTOR_SIGNUP_REQUEST,
 
          USER_LOGIN_REQUEST,
          USER_LOGIN_SUCCESS,
-         USER_LOGIN_FAILED
+         USER_LOGIN_FAILED,
+
+         USER_LOGOUT
          } from "../Constants/UserConstants";
 
 
 
-export const DoctorSignupAction = (title, firstName, lastName, email, mobile, nidOrPassport, registration, gender, dateOfBirth, password) => async(dispatch) => {
+export const DoctorSignupAction = (title, firstName, lastName, email, mobile, nidOrPassport, registration, gender, dateOfBirth, password) => async (dispatch) => {
     try{
         dispatch({
             type : DOCTOR_SIGNUP_REQUEST
@@ -44,7 +46,7 @@ export const DoctorSignupAction = (title, firstName, lastName, email, mobile, ni
     }
 }
 
-export const PatientSignupAction = (firstName, lastName, email, mobile, gender, dateOfBirth, password) => async(dispatch) => {
+export const PatientSignupAction = (firstName, lastName, email, mobile, gender, dateOfBirth, password) => async (dispatch) => {
     try{
         dispatch({
             type : PATIENT_SIGNUP_REQUEST
@@ -74,7 +76,7 @@ export const PatientSignupAction = (firstName, lastName, email, mobile, gender, 
     }
 }
 
-export const UserLoginAction = (email, password) => async(dispatch) => {
+export const UserLoginAction = (email, password) => async (dispatch) => {
     try{
         dispatch({
             type : USER_LOGIN_REQUEST
@@ -86,16 +88,16 @@ export const UserLoginAction = (email, password) => async(dispatch) => {
             }
         }
 
-        const data = await axios.post(
+        const userData = await axios.post(
                     '/api/accounts/login/',
                     {'email':email, 'password':password},
                     config)
 
-        localStorage.setItem('UserInfo', JSON.stringify(data))
+        localStorage.setItem('UserInfo', JSON.stringify(userData))
 
         dispatch({
             type : USER_LOGIN_SUCCESS,
-            payload : data
+            payload : userData
         })
     }catch(error){
         dispatch({
@@ -103,6 +105,18 @@ export const UserLoginAction = (email, password) => async(dispatch) => {
             payload : error.response.data
         })
     }
-} 
+}
+
+const UserLogoutAction = () => (dispatch) => {
+    
+        localStorage.removeItem('UserInfo')
+
+        dispatch({
+            type : USER_LOGOUT
+        })
+    
+}
+
+export default UserLogoutAction
 
 
