@@ -78,7 +78,7 @@ const DoctorProfile = () => {
                                             <div class="form-check">
                                                 <input class="form-check-input"
                                                        type="checkbox"
-                                                       value={currentlyWorking}
+                                                       value={true}
                                                        id="flexCheckDefault"
                                                        onChange={(e) => setCurrentlyWorking(e.target.value)}
                                                 />
