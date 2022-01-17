@@ -13,6 +13,7 @@ import DoctorHome from "./Screen/DoctorHome";
 import PatientHome from "./Screen/PatientHome";
 import UserCheck from "./Screen/UserCheck";
 import DoctorProfile from "./Screen/DoctorProfile";
+import Qualification from "./Screen/Qualification";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
               <Route exact path="/doctor/profile"> <DoctorProfile /> </Route>
               <Route exact path="/patient/home"> <PatientHome /> </Route>
               <Route exact path="/usercheck"> <UserCheck /> </Route>
+              <Route exact path="/doctor/signup/qualification"> <Qualification /> </Route>
             </Switch>
         </BrowserRouter> 
       </div>

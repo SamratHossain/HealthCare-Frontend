@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import TitleNave from '../Components/TitleNave'
 import {DoctorSignupAction} from '../Actions/UserActions'
 
@@ -39,15 +39,22 @@ const DoctorSignup = () => {
     
     const dispatch = useDispatch()
 
+    const history = useHistory()
+
     const submitHandler = (e) => {
         e.preventDefault()    
-        dispatch(DoctorSignupAction(title, firstName, lastName, email, mobile, nidOrPassport, registration, gender, dateOfBirth, password))   
+        // dispatch(DoctorSignupAction(title, firstName, lastName, email, mobile, nidOrPassport, registration, gender, dateOfBirth, password))
+        history.push("/doctor/signup/qualification")
     }
     
     return (
         <div className='container-fluid'>
             {<TitleNave />}
+                <div className='text-center'>
+                    <h3>Doctor SignUp</h3>
+                </div>
             <div className='form mx-auto mt-3 border rounded p-3 shadow' style={{width:'500px'}}>
+                
                 <form onSubmit={submitHandler}>
                     <label className="form-label"> Title :</label>
                     <select className="form-select mb-3"
@@ -118,7 +125,9 @@ const DoctorSignup = () => {
 
                     <label className="form-label"> Gender </label> <br/> 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" 
+                        <input class="form-check-input"
+                        name="flexRadioDefault" 
+                        id="flexRadioDefault1"
                         type="radio"   
                         value="male"
                         onChange={(e) => setGender(e.target.value)}
@@ -126,7 +135,9 @@ const DoctorSignup = () => {
                         <label class="form-check-label" for="inlineRadio1">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" 
+                        <input class="form-check-input"
+                        name="flexRadioDefault" 
+                        id="flexRadioDefault2" 
                         type="radio" 
                         value="female"
                         onChange={(e) => setGender(e.target.value)} 
@@ -135,13 +146,17 @@ const DoctorSignup = () => {
                         <label class="form-check-label" for="inlineRadio2">Female</label>
                     </div>
                     <div class="form-check form-check-inline mb-2">
-                        <input class="form-check-input" 
+                        <input class="form-check-input"
+                        name="flexRadioDefault" 
+                        id="flexRadioDefault3" 
                         type="radio"  
                         value="custom"
                         onChange={(e) => setGender(e.target.value)} 
                     />
                         <label class="form-check-label" for="inlineRadio3">Custom</label>
                     </div>
+
+                    
                     <br />
                     <label className="form-label mb-2"> Date of Birth (Applicatns must be over 18) :</label> <br />
                     <input className='form-control mb-3' 
@@ -158,7 +173,7 @@ const DoctorSignup = () => {
                            onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <button className='btn btn-success px-4 py-2 fs-5 fw-bold' type='submit'>Signup</button>
+                    <button className='btn btn-success px-4 py-2 fs-5 fw-bold' type='submit'>Register</button>
                     <p className='lead d-inline ms-2'>Already Have an Account?</p> <Link to='/login' className='fw-bold fs-5'>Login</Link>
                 </form>
             </div>

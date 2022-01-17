@@ -60,7 +60,9 @@ const PatientSignup = () => {
 
                     <label className="form-label"> Gender </label> <br/> 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" 
+                        <input class="form-check-input"
+                        name="flexRadioDefault" 
+                        id="flexRadioDefault1" 
                         type="radio"   
                         value="male"
                         onChange={(e) => setGender(e.target.value)}
@@ -68,7 +70,9 @@ const PatientSignup = () => {
                         <label class="form-check-label" for="inlineRadio1">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" 
+                        <input class="form-check-input"
+                        name="flexRadioDefault" 
+                        id="flexRadioDefault2" 
                         type="radio" 
                         value="female"
                         onChange={(e) => setGender(e.target.value)} 
@@ -77,7 +81,9 @@ const PatientSignup = () => {
                         <label class="form-check-label" for="inlineRadio2">Female</label>
                     </div>
                     <div class="form-check form-check-inline mb-2">
-                        <input class="form-check-input" 
+                        <input class="form-check-input"
+                        name="flexRadioDefault" 
+                        id="flexRadioDefault3" 
                         type="radio"  
                         value="custom"
                         onChange={(e) => setGender(e.target.value)} 

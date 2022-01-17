@@ -4,11 +4,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { PatientSignupReducer } from "./Reducers/UserReducers";
 import { DoctorSignupReducer } from "./Reducers/UserReducers";
 import { UserLoginReducer } from "./Reducers/UserReducers"
+import { viewExperienceReducer } from "./Reducers/DoctorReducers";
 
 const rootReducer = combineReducers({
     patientSignup : PatientSignupReducer,
     doctorSignup : DoctorSignupReducer,
     userLogin : UserLoginReducer,
+    viewExperience : viewExperienceReducer,
 })
 
 const userTokenFromLocalStorage = localStorage.getItem('UserInfo')?
