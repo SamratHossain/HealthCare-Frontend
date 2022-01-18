@@ -6,82 +6,106 @@ import TitleNave from '../Components/TitleNave'
 import {DoctorSignupAction} from '../Actions/UserActions'
 
 const Experience = () => {
-    const [degreeName, setDegreeName] = useState('')
-    const [speciality, setSpeciality] = useState('')
-    const [instituteName, setInstituteName] = useState('')
-    const [country, setCountry] = useState('')
-    const [passingYear, setPassingYear] = useState('')
+    const [hospitalName, setHospitalName] = useState('')
+    const [designation, setDesignation] = useState('')
+    const [department, setDepartment] = useState('')
+    const [currentlyWorking, setCurrentlyWorking] = useState('')
+    const [from, setFrom] = useState('')
+    const [to, setTo] = useState('')
     
-    const qualification = {
-        "DegreeName" : degreeName,
-        "Speciality" : speciality,
-        "InstituteName" : instituteName,
-        "Country" : country,
-        "PassingYear" : passingYear
+    const experience = {
+        "HospitalName" : hospitalName,
+        "Designation" : designation,
+        "Department" : department,
+        "From" : from,
+        "To" : to
     }
 
     const history = useHistory()
 
     const submitHandler = (e) => {
         e.preventDefault()
-        localStorage.setItem("Qualification" , JSON.stringify(qualification))    
-        history.push("/doctor/signup/experience")
+        localStorage.setItem("Experience" , JSON.stringify(experience))    
+        history.push("/doctor/signup/availability")
     }
 
     return (
         <div className='container-fluid'>
             {<TitleNave />}
                 <div className='text-center'>
-                    <h3>Add Your Qualification</h3>
+                    <h3>Add Your Experience</h3>
                 </div>
             <div className='form mx-auto mt-3 mb-3 border rounded p-3 shadow' style={{width:'500px'}}>
                 
                 <form onSubmit={submitHandler}>
-                    <label className="form-label"> Select Degree :</label>
-                    <select className="form-select mb-3"
-                            aria-label="Default select example"
-                            onChange={(e) => setDegreeName(e.target.value)}
-                            >
-                        <option selected>Degree Name</option>
-                        {degree.map((dg) => (<option> {dg} </option>))}
-                        
-                    </select>
-
-                    <label className="form-label"> Select Speciality :</label>
-                    <select className="form-select mb-3"
-                            aria-label="Default select example"
-                            onChange={(e) => setSpeciality(e.target.value)}
-                            >
-                        <option selected>Speciality</option>
-                        {specialist.map((sp) => (<option> {sp} </option>))}
-                        
-                    </select>
 
                     <label className="form-label"> Institute Name :</label>
                     <input className='form-control mb-2'
                            type='text' 
-                           placeholder='Enter Your First Name'
-                           value={instituteName}
-                           onChange={(e) => setInstituteName(e.target.value)}
+                           
+                           value={hospitalName}
+                           required
+                           onChange={(e) => setHospitalName(e.target.value)}
                     />
 
-                    <label className="form-label"> Country :</label>
+                    <label className="form-label"> Designation :</label>
                     <input className='form-control mb-2' 
-                           type='text' 
-                           placeholder='Enter Your Last Name'
-                           value={country} 
-                           onChange={(e) => setCountry(e.target.value)}
+                           type='text'        
+                           value={designation}
+                           required 
+                           onChange={(e) => setDesignation(e.target.value)}
                     />
+                    
+                    <label className="form-label"> Department :</label>
+                    <input className='form-control mb-2' 
+                           type='text'   
+                           value={department}
+                           required 
+                           onChange={(e) => setDepartment(e.target.value)}
+                    />
+                    <label className="form-label mb-2 fw-bold"> Employment Period </label>
+                                            <div class="form-check">
+                                                <input class="form-check-input"
+                                                       type="checkbox"
+                                                       value={true}
+                                                       id="flexCheckDefault"
+                                                       
+                                                       onChange={(e) => setCurrentlyWorking(e.target.value)}
+                                                />
+                                                       
+                                                <label class="form-check-label mb-3" for="flexCheckDefault">
+                                                    Currently Working
+                                                </label>
+                                            </div>
+                                            <div className="row mb-3">
+                                                <div className="col-6">
+                                                    <label className="form-label mb-2"> From: </label>
+                                                    <input className="form-control"
+                                                           style={{width:"200px"}}
+                                                           type="date"
+                                                           value={from}
+                                                           required
+                                                           onChange={(e) => setFrom(e.target.value)}
+                                                      />
+                                                </div>
+                                                {!currentlyWorking && (
+                                                <div className="col-6">
+                                                    <label className="form-label mb-2"> To: </label>
+                                                    <input className="form-control"
+                                                           style={{width:"200px"}} 
+                                                           type="date"
+                                                           value={to}
+                                                           required
+                                                           onChange={(e) => setTo(e.target.value)}
+                                                           />
+                                                </div>)
+                                                }
+                                            </div>
 
-                    <br />
-                    <label className="form-label mb-2"> Passing Year :</label> <br />
-                    <input className='form-control mb-3' 
-                           type='date'
-                           value={passingYear}
-                           onChange={(e) => setPassingYear(e.target.value)}
-                     />
-
-                    <button className='btn btn-success px-4 py-2 fs-5 fw-bold' type='submit'>Proceed Next</button>
+                    <div className='d-flex justify-content-between'>
+                        <button className='btn btn-success px-4 py-2 fs-5 fw-bold' onClick={()=> history.goBack()}>Back</button>
+                        <button className='btn btn-success px-4 py-2 fs-5 fw-bold' type='submit'>Proceed Next</button>
+                    </div>
                 </form>
             </div>
         </div>

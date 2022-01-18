@@ -14,6 +14,10 @@ import PatientHome from "./Screen/PatientHome";
 import UserCheck from "./Screen/UserCheck";
 import DoctorProfile from "./Screen/DoctorProfile";
 import Qualification from "./Screen/Qualification";
+import Experience from "./Screen/Experience";
+import Availability from "./Screen/Availability";
+import ConsultationFee from "./Screen/ConsultationFee";
+import NidCard from "./Screen/NidCard";
 
 const App = () => {
   return (
@@ -31,6 +35,10 @@ const App = () => {
               <Route exact path="/patient/home"> <PatientHome /> </Route>
               <Route exact path="/usercheck"> <UserCheck /> </Route>
               <Route exact path="/doctor/signup/qualification"> <Qualification /> </Route>
+              <Route exact path="/doctor/signup/experience"> <Experience /> </Route>
+              <Route exact path="/doctor/signup/availability"> <Availability /> </Route>
+              <Route exact path="/doctor/signup/consultationfee"> <ConsultationFee /> </Route>
+              <Route exact path="/doctor/signup/nidcard"> <NidCard /> </Route>
             </Switch>
         </BrowserRouter> 
       </div>

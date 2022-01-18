@@ -101,7 +101,9 @@ const Qualification = () => {
                     <label className="form-label"> Select Degree :</label>
                     <select className="form-select mb-3"
                             aria-label="Default select example"
+                            required
                             onChange={(e) => setDegreeName(e.target.value)}
+                            
                             >
                         <option selected>Degree Name</option>
                         {degree.map((dg) => (<option> {dg} </option>))}
@@ -111,6 +113,7 @@ const Qualification = () => {
                     <label className="form-label"> Select Speciality :</label>
                     <select className="form-select mb-3"
                             aria-label="Default select example"
+                            required
                             onChange={(e) => setSpeciality(e.target.value)}
                             >
                         <option selected>Speciality</option>
@@ -123,6 +126,7 @@ const Qualification = () => {
                            type='text' 
                            placeholder='Enter Your First Name'
                            value={instituteName}
+                           required
                            onChange={(e) => setInstituteName(e.target.value)}
                     />
 
@@ -130,7 +134,8 @@ const Qualification = () => {
                     <input className='form-control mb-2' 
                            type='text' 
                            placeholder='Enter Your Last Name'
-                           value={country} 
+                           value={country}
+                           required 
                            onChange={(e) => setCountry(e.target.value)}
                     />
 
@@ -139,10 +144,14 @@ const Qualification = () => {
                     <input className='form-control mb-3' 
                            type='date'
                            value={passingYear}
+                           required
                            onChange={(e) => setPassingYear(e.target.value)}
                      />
 
-                    <button className='btn btn-success px-4 py-2 fs-5 fw-bold' type='submit'>Proceed Next</button>
+                    <div className='d-flex justify-content-between'>
+                        <button className='btn btn-success px-4 py-2 fs-5 fw-bold' onClick={()=> history.goBack()}>Back</button>
+                        <button className='btn btn-success px-4 py-2 fs-5 fw-bold' type='submit'>Proceed Next</button>
+                    </div>
                 </form>
             </div>
         </div>

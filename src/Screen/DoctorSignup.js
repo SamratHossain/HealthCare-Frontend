@@ -59,6 +59,7 @@ const DoctorSignup = () => {
                     <label className="form-label"> Title :</label>
                     <select className="form-select mb-3"
                             aria-label="Default select example"
+                            required
                             onChange={(e) => setTitle(e.target.value)}
                             >
                         <option selected></option>
@@ -73,6 +74,7 @@ const DoctorSignup = () => {
                            type='text' 
                            placeholder='Enter Your First Name'
                            value={firstName}
+                           required
                            onChange={(e) => setFirstName(e.target.value)}
                     />
 
@@ -80,7 +82,8 @@ const DoctorSignup = () => {
                     <input className='form-control mb-2' 
                            type='text' 
                            placeholder='Enter Your Last Name'
-                           value={lastName} 
+                           value={lastName}
+                           required 
                            onChange={(e) => setLastName(e.target.value)}
                     />
 
@@ -89,7 +92,8 @@ const DoctorSignup = () => {
                     <input className='form-control mb-2'
                            type='email' 
                            placeholder='Enter Your Email'
-                           value={email} 
+                           value={email}
+                           required 
                            onChange={(e) => setEmail(e.target.value)}
                     />
                 
@@ -100,6 +104,7 @@ const DoctorSignup = () => {
                            type='number' 
                            placeholder='Enter Your Mobile Number' 
                            value={mobile}
+                           required
                            onChange={(e) => setMobile(e.target.value)}
                     />
 
@@ -108,6 +113,7 @@ const DoctorSignup = () => {
                            type='number' 
                            placeholder='Enter Your NID/Passport Number' 
                            value={nidOrPassport}
+                           required
                            onChange={(e) => setNidOrPassport(e.target.value)}
                     />
 
@@ -118,6 +124,7 @@ const DoctorSignup = () => {
                            type='number' 
                            placeholder='Enter Your Registration Number' 
                            value={registration}
+                           required
                            onChange={(e) => setRegistration(e.target.value)}
                     />
 
@@ -130,6 +137,7 @@ const DoctorSignup = () => {
                         id="flexRadioDefault1"
                         type="radio"   
                         value="male"
+                        required
                         onChange={(e) => setGender(e.target.value)}
                     />
                         <label class="form-check-label" for="inlineRadio1">Male</label>
@@ -162,6 +170,7 @@ const DoctorSignup = () => {
                     <input className='form-control mb-3' 
                            type='date'
                            value={dateOfBirth}
+                           required
                            onChange={(e) => setDateOfBirth(e.target.value)}
                      />
 
@@ -170,6 +179,7 @@ const DoctorSignup = () => {
                            type='password' 
                            placeholder='Enter Your Password' 
                            value={password}
+                           required
                            onChange={(e) => setPassword(e.target.value)}
                     />
 
