@@ -3,6 +3,10 @@ import { DOCTOR_SIGNUP_REQUEST,
          DOCTOR_SIGNUP_SUCCESS,
          DOCTOR_SIGNUP_FAILED,
 
+         CHECK_EXISTING_USER_REQUEST,
+         CHECK_EXISTING_USER_SUCCESS,
+         CHECK_EXISTING_USER_FAILED,
+
          PATIENT_SIGNUP_REQUEST,
          PATIENT_SIGNUP_SUCCESS,
          PATIENT_SIGNUP_FAILED,
@@ -41,6 +45,36 @@ export const DoctorSignupAction = (title, firstName, lastName, email, mobile, ni
     }catch(error){
         dispatch({
             type : DOCTOR_SIGNUP_FAILED,
+            payload : error.response.data
+        })
+    }
+}
+
+export const CheckExistingDoctorAction = (email, nidOrPassport, registration) => async (dispatch) => {
+    try{
+        dispatch({
+            type : CHECK_EXISTING_USER_REQUEST
+        })
+
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        }
+
+        const data =  await axios.post(
+            "/api/accounts/doctor/check-existing-doctor/",
+            {'Email':email, 'NidOrPassport':nidOrPassport, 'Registration':registration},
+            config
+        )
+
+        dispatch({
+            type : CHECK_EXISTING_USER_SUCCESS,
+            payload : data
+        })
+    }catch(error){
+        dispatch({
+            type : CHECK_EXISTING_USER_FAILED,
             payload : error.response.data
         })
     }

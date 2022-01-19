@@ -2,6 +2,10 @@ import {DOCTOR_SIGNUP_REQUEST,
         DOCTOR_SIGNUP_SUCCESS,
         DOCTOR_SIGNUP_FAILED,
 
+        CHECK_EXISTING_USER_REQUEST,
+        CHECK_EXISTING_USER_SUCCESS,
+        CHECK_EXISTING_USER_FAILED,
+
         PATIENT_SIGNUP_REQUEST,
         PATIENT_SIGNUP_SUCCESS,
         PATIENT_SIGNUP_FAILED,
@@ -13,6 +17,35 @@ import {DOCTOR_SIGNUP_REQUEST,
         USER_LOGOUT
     } from '../Constants/UserConstants'
 
+
+export const CheckExistingDoctorReducer = (state = {error:[]}, action) => {
+        switch(action.type){
+            case CHECK_EXISTING_USER_REQUEST:
+                return {
+                    ...state,
+                    loading : true
+                }
+
+            case CHECK_EXISTING_USER_SUCCESS:
+                return {
+                    ...state,
+                    loading : false,
+                    success : action.payload,
+                    error : []
+                }
+
+            case CHECK_EXISTING_USER_FAILED:
+                return {
+                    ...state,
+                    loading : false,
+                    error : action.payload
+                }
+
+            default :
+                return state
+ 
+        }
+}
 
 export const DoctorSignupReducer = (state = {error:[]}, action) => {
         switch(action.type){

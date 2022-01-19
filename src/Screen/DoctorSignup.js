@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {Link, useHistory} from 'react-router-dom'
 import TitleNave from '../Components/TitleNave'
-import {DoctorSignupAction} from '../Actions/UserActions'
+import {CheckExistingDoctorAction} from '../Actions/UserActions'
 
 const DoctorSignup = () => {
     const [title, setTitle] = useState('')
@@ -18,8 +18,9 @@ const DoctorSignup = () => {
     const [password, setPassword] = useState('')
 
 
-    const doctorSignup = useSelector(state => state.doctorSignup)
-    const {loading, success, error} = doctorSignup
+    const checkExistingDoctor = useSelector(state => state.checkExistingDoctor)
+    const {loading, success, error} = checkExistingDoctor
+    console.log(success)
     
     var EmailError
     var NidOrPassportError
@@ -36,16 +37,36 @@ const DoctorSignup = () => {
     })
 
 
+    const doctorInfo = {
+        "Title" : title,
+        "FirstName" : firstName,
+        "LastName" : lastName,
+        "Email" : email,
+        "Mobile" : mobile,
+        "NidOrPassport" : nidOrPassport,
+        "Registration" : registration,
+        "Gender" : gender,
+        "DateOfBirth" : dateOfBirth,
+        "Password" : password
+
+    }
+
+
     
     const dispatch = useDispatch()
 
     const history = useHistory()
 
-    const submitHandler = (e) => {
-        e.preventDefault()    
-        // dispatch(DoctorSignupAction(title, firstName, lastName, email, mobile, nidOrPassport, registration, gender, dateOfBirth, password))
+    if(success){
         history.push("/doctor/signup/qualification")
     }
+
+    const submitHandler = (e) => {
+        e.preventDefault()    
+        localStorage.setItem("DoctorInfo", JSON.stringify(doctorInfo))
+        
+            dispatch(CheckExistingDoctorAction(email, nidOrPassport, registration))
+        }
     
     return (
         <div className='container-fluid'>

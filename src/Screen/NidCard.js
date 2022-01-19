@@ -10,20 +10,14 @@ import profile from '../images/profile.jpeg'
 const NidCard = () => {
     const [nid, setNid] = useState('')
     
-    const file = new FormData()
-    file.append("image", nid)
-    console.log("image:",file)
+    localStorage.getItem("")
     
-    const Identity = {
-        "NID" : nid        
-    }
 
     const history = useHistory()
 
     const submitHandler = (e) => {
-        e.preventDefault()
-        localStorage.setItem("Identity" , Identity)    
-        history.push("/doctor/signup/nid")
+        e.preventDefault()    
+        
     }
 
     
