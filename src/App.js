@@ -18,6 +18,7 @@ import Experience from "./Screen/Experience";
 import Availability from "./Screen/Availability";
 import ConsultationFee from "./Screen/ConsultationFee";
 import NidCard from "./Screen/NidCard";
+import Done from "./Screen/Done";
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
               <Route exact path="/doctor/signup/availability"> <Availability /> </Route>
               <Route exact path="/doctor/signup/consultationfee"> <ConsultationFee /> </Route>
               <Route exact path="/doctor/signup/nidcard"> <NidCard /> </Route>
+              <Route exact path="/doctor/signup/done"> <Done /> </Route>
             </Switch>
         </BrowserRouter> 
       </div>

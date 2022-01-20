@@ -8,19 +8,97 @@ import nidcard from '../images/smartcard.jpg'
 import profile from '../images/profile.jpeg'
 
 const NidCard = () => {
-    const [nid, setNid] = useState('')
-    
-    localStorage.getItem("")
-    
+    const [NidPhoto, setNidPhoto] = useState('')
+    const [ProfilePhoto, setProfilePhoto] = useState('')
 
+    const doctorSignup = useSelector(state => state.doctorSignup)
+    const {error, success, loading} = doctorSignup
+
+    // if(success){
+    //     history.push("/")
+    // }
+    
+    const DoctorInfo = JSON.parse(localStorage.getItem("DoctorInfo"))
+    const Qualification = JSON.parse(localStorage.getItem("Qualification"))
+    const Experience = JSON.parse(localStorage.getItem("Experience"))
+    const Availibility = JSON.parse(localStorage.getItem("Availibility"))
+    const Consultation = JSON.parse(localStorage.getItem("Consultation"))
+    
+    const Title = DoctorInfo.Title
+    const FirstName = DoctorInfo.FirstName
+    const LastName = DoctorInfo.LastName
+    const Email = DoctorInfo.Email
+    const Mobile = DoctorInfo.Mobile
+    const Gender = DoctorInfo.Gender
+    const DateOfBirth = DoctorInfo.DateOfBirth
+    const NidOrPassport = DoctorInfo.NidOrPassport
+    const Registration = DoctorInfo.Registration
+    const Password = DoctorInfo.Password
+
+    const DegreeName = Qualification.DegreeName
+    const InstituteName = Qualification.InstituteName
+    const Speciality = Qualification.Speciality
+    const Country = Qualification.Country
+    const PassingYear = Qualification.PassingYear
+
+    const HospitalName = Experience.HospitalName
+    const Department = Experience.Department
+    const Designation = Experience.Designation
+    const CurrentlyWorking = Experience.CurrentlyWorking
+    const From = Experience.From
+    const To = Experience.To
+
+    const StartTime = Availibility.StartTime
+    const EndTime = Availibility.EndTime
+    const AvailableDays = Availibility.Days
+
+    const ConsultationFee = Consultation.ConsultFee
+    const FollowUpFee = Consultation.FollowupFee
+    const ConsultancyDuration = Consultation.ConsultDuration
+    const WithinDuration = Consultation.FollowUpDuration
+
+    const DoctorsData = new FormData()
+    
+    DoctorsData.append("Title",Title)
+    DoctorsData.append("FirstName",FirstName)
+    DoctorsData.append("LastName",LastName)
+    DoctorsData.append("Email",Email)
+    DoctorsData.append("Mobile",Mobile)
+    DoctorsData.append("Gender",Gender)
+    DoctorsData.append("DateOfBirth",DateOfBirth)
+    DoctorsData.append("NidOrPassport",NidOrPassport)
+    DoctorsData.append("Registration",Registration)
+    DoctorsData.append("Password",Password)
+    DoctorsData.append("DegreeName",DegreeName)
+    DoctorsData.append("InstituteName",InstituteName)
+    DoctorsData.append("Specialist",Speciality)
+    DoctorsData.append("Country",Country)
+    DoctorsData.append("PassingYear",PassingYear)
+    DoctorsData.append("HospitalName",HospitalName)
+    DoctorsData.append("Department",Department)
+    DoctorsData.append("Designation",Designation)
+    DoctorsData.append("CurrentlyWorking",CurrentlyWorking)
+    DoctorsData.append("From",From)
+    DoctorsData.append("To",To)
+    DoctorsData.append("Start",StartTime)
+    DoctorsData.append("End",EndTime)
+    DoctorsData.append("AvailableDays",AvailableDays)
+    DoctorsData.append("ConsultationFee",ConsultationFee)
+    DoctorsData.append("FollowUpFee",FollowUpFee)
+    DoctorsData.append("ConsultancyDuration",ConsultancyDuration)
+    DoctorsData.append("WithinDuration",WithinDuration)
+    DoctorsData.append("NidPhoto",NidPhoto)
+    DoctorsData.append("ProfilePhoto",ProfilePhoto)
+
+    
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const submitHandler = (e) => {
-        e.preventDefault()    
-        
+        e.preventDefault()
+        dispatch(DoctorSignupAction(DoctorsData))
+        history.push("/doctor/signup/done")    
     }
-
-    
 
     return (
         <div className='container-fluid'>
@@ -50,7 +128,7 @@ const NidCard = () => {
                             type="file" 
                             class="form-control" 
                             required 
-                            onChange={(e) => setNid(e.target.files[0])}
+                            onChange={(e) => setNidPhoto(e.target.files[0])}
                             />
                         </div>
 
@@ -66,7 +144,7 @@ const NidCard = () => {
                             type="file" 
                             class="form-control" 
                             required 
-                            onChange={(e) => setNid(e.target.files[0])}
+                            onChange={(e) => setProfilePhoto(e.target.files[0])}
                             />
                         </div>
                     </div>

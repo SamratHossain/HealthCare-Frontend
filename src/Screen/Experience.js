@@ -17,6 +17,7 @@ const Experience = () => {
         "HospitalName" : hospitalName,
         "Designation" : designation,
         "Department" : department,
+        "CurrentlyWorking" : currentlyWorking,
         "From" : from,
         "To" : to
     }

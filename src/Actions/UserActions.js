@@ -20,7 +20,7 @@ import { DOCTOR_SIGNUP_REQUEST,
 
 
 
-export const DoctorSignupAction = (title, firstName, lastName, email, mobile, nidOrPassport, registration, gender, dateOfBirth, password) => async (dispatch) => {
+export const DoctorSignupAction = ( DoctorsData) => async (dispatch) => {
     try{
         dispatch({
             type : DOCTOR_SIGNUP_REQUEST
@@ -34,7 +34,7 @@ export const DoctorSignupAction = (title, firstName, lastName, email, mobile, ni
 
         const data =  await axios.post(
             "/api/accounts/doctor/signup/",
-            {'Title':title, 'FirstName':firstName, 'LastName':lastName, 'Email':email, 'Mobile':mobile, 'NidOrPassport':nidOrPassport, 'Registration':registration, 'Gender':gender, 'DateOfBirth':dateOfBirth, 'Password':password},
+            DoctorsData,
             config
         )
 
@@ -42,6 +42,8 @@ export const DoctorSignupAction = (title, firstName, lastName, email, mobile, ni
             type : DOCTOR_SIGNUP_SUCCESS,
             payload : data
         })
+
+        
     }catch(error){
         dispatch({
             type : DOCTOR_SIGNUP_FAILED,
