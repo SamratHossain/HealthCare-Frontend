@@ -11,7 +11,6 @@ import PatientSignup from "./Screen/PatientSignup";
 import Login from "./Screen/Login";
 import DoctorHome from "./Screen/DoctorHome";
 import PatientHome from "./Screen/PatientHome";
-import UserCheck from "./Screen/UserCheck";
 import DoctorProfile from "./Screen/DoctorProfile";
 import Qualification from "./Screen/Qualification";
 import Experience from "./Screen/Experience";
@@ -34,7 +33,6 @@ const App = () => {
               <Route exact path="/doctor/home"> <DoctorHome /> </Route>
               <Route exact path="/doctor/profile"> <DoctorProfile /> </Route>
               <Route exact path="/patient/home"> <PatientHome /> </Route>
-              <Route exact path="/usercheck"> <UserCheck /> </Route>
               <Route exact path="/doctor/signup/qualification"> <Qualification /> </Route>
               <Route exact path="/doctor/signup/experience"> <Experience /> </Route>
               <Route exact path="/doctor/signup/availability"> <Availability /> </Route>

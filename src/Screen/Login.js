@@ -18,11 +18,14 @@ const Login = () => {
     const history = useHistory()
 
     const doctor = userInfo ? userInfo.data.IsDoctor : null
+    const isApproved = userInfo ? userInfo.data.IsApproved : null
 
     const patient = userInfo ? userInfo.data.IsPatient : null
 
-    if(doctor){
+    if(doctor && isApproved){
         history.push("/doctor/home")
+    }else if(doctor && !isApproved){
+        localStorage.removeItem("UserInfo")
     }else if(patient){
         history.push("/patient/home")
     }
@@ -39,8 +42,12 @@ const Login = () => {
         <div className="conatiner-fluid">
             
             {<TitleNave />}
+
+            <h4></h4>
             <div className='form mx-auto mt-3 border rounded p-3 shadow' style={{width:'500px'}}>
-                <form onSubmit={submitHandler}> 
+                <form onSubmit={submitHandler}>
+                    {doctor && !isApproved && (<label className="form-label d-block text-danger">Your account is not approved yet</label>)}
+                    
                 {error && (<label className="form-label d-block text-danger">Invalid Email or Password !</label>)}
                 <label className="form-label"> Email :</label>
                 <input className='form-control mb-2'
