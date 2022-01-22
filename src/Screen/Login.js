@@ -17,10 +17,16 @@ const Login = () => {
     
     const history = useHistory()
 
+    const doctor = userInfo ? userInfo.data.IsDoctor : null
 
-    if(userInfo){
-        history.push("/usercheck")
+    const patient = userInfo ? userInfo.data.IsPatient : null
+
+    if(doctor){
+        history.push("/doctor/home")
+    }else if(patient){
+        history.push("/patient/home")
     }
+
 
     const dispatch = useDispatch()
 
