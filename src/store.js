@@ -19,12 +19,12 @@ const userTokenFromLocalStorage = localStorage.getItem('UserInfo')?
                                   JSON.parse(localStorage.getItem('UserInfo')) : null
 
 const initialState = {
-    userLogin : {userToken : userTokenFromLocalStorage}
+    userLogin : {userInfo : userTokenFromLocalStorage}
 }
 
 const middleware = [thunk]
 
-const store = createStore(
+const store = createStore(  
     rootReducer,
     initialState,
     composeWithDevTools(

@@ -50,13 +50,13 @@ export const viewExperienceAction = () => async (dispatch, getState) => {
             })
     
             const {
-                userLogin : {userToken}
+                userLogin : {userInfo}
             } = getState()
     
             const config = {
                 headers : {
                     'Content-Type' : 'application/json',
-                    Authorization : `Bearer ${userToken.data.access}`
+                    Authorization : `Bearer ${userInfo.data.access}`
                 }
             }
     

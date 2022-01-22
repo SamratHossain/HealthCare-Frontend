@@ -17,8 +17,8 @@ const DoctorProfile = () => {
     const [to, setTo] = useState('')
 
     const userLogin = useSelector(state => state.userLogin)
-    const {userToken} = userLogin
-
+    const {userInfo} = userLogin
+    console.log("info : ", userInfo);
     const viewExperience = useSelector(state => state.viewExperience)
     const {experiences} = viewExperience
     
@@ -30,7 +30,7 @@ const DoctorProfile = () => {
     const history = useHistory()
 
     useEffect(() => {
-        if(userToken){
+        if(userInfo){
             dispatch(viewExperienceAction())
         }else{
             history.push('/login')
