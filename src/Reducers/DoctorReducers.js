@@ -1,38 +1,171 @@
-import {ADD_EXPRIENCE_REQUEST,
-        ADD_EXPRIENCE_SUCCESS,
-        ADD_EXPRIENCE_FAILED,
-        
-        VIEW_EXPERIENCE_REQUEST,
-        VIEW_EXPERIENCE_SUCCESS,
-        VIEW_EXPERIENCE_FAILED,
+import {VIEW_PERSONALINFO_REQUEST,
+        VIEW_PERSONALINFO_SUCCESS,
+        VIEW_PERSONALINFO_FAILED,
 
-        VIEW_QUALIFICATION_REQUEST,
-        VIEW_QUALIFICATION_SUCCESS,
-        VIEW_QUALIFICATION_FAILED,
+        UPDATE_PERSONALINFO_REQUEST,
+        UPDATE_PERSONALINFO_SUCCESS,
+        UPDATE_PERSONALINFO_FAILED,
 
         VIEW_DOCTORINFO_REQUEST,
         VIEW_DOCTORINFO_SUCCESS,
         VIEW_DOCTORINFO_FAILED,
 
-        VIEW_DOCTOR_REQUEST,
-        VIEW_DOCTOR_SUCCESS,
-        VIEW_DOCTOR_FAILED,
+        UPDATE_DOCTORINFO_REQUEST,
+        UPDATE_DOCTORINFO_SUCCESS,
+        UPDATE_DOCTORINFO_FAILED,
+    
+        ADD_EXPERIENCE_REQUEST,
+        ADD_EXPERIENCE_SUCCESS,
+        ADD_EXPERIENCE_FAILED,
+        
+        VIEW_EXPERIENCE_REQUEST,
+        VIEW_EXPERIENCE_SUCCESS,
+        VIEW_EXPERIENCE_FAILED,
+
+        UPDATE_EXPERIENCE_REQUEST,
+        UPDATE_EXPERIENCE_SUCCESS,
+        UPDATE_EXPERIENCE_FAILED,
+                         
+
+        VIEW_QUALIFICATION_REQUEST,
+        VIEW_QUALIFICATION_SUCCESS,
+        VIEW_QUALIFICATION_FAILED,
+
+        UPDATE_QUALIFICATION_REQUEST,
+        UPDATE_QUALIFICATION_SUCCESS ,
+        UPDATE_QUALIFICATION_FAILED
                             } from '../Constants/DoctorConstans'
 
-const  AddExperienceReducer = (state = {}, action) => {
+
+export const viewPersonalInfoReducer = (state= {personalInfo:[]}, action) => {
         
         switch(action.type){
-            case ADD_EXPRIENCE_REQUEST:
+            case VIEW_PERSONALINFO_REQUEST:
+                return{
+                    ...state,
+                    loading : true,
+                    
+                }
+
+            case VIEW_PERSONALINFO_SUCCESS:
+                return {
+                    ...state,
+                    loading : false,
+                    personalInfo : action.payload
+                }
+
+            case VIEW_PERSONALINFO_FAILED:
+                return{
+                    ...state,
+                    loading : false,
+                    error : action.payload
+                }
+
+            default:
+                return state
+        }
+}
+
+
+export const updatePersonalInfoReducer = (state= {}, action) => {
+        
+    switch(action.type){
+        case UPDATE_PERSONALINFO_REQUEST:
+            return{
+                ...state,
+                loading : true,
+                
+            }
+
+        case UPDATE_PERSONALINFO_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                updatePersonalInfo : action.payload
+            }
+
+        case UPDATE_PERSONALINFO_FAILED:
+            return{
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+
+        default:
+            return state
+    }
+}
+
+export const viewDoctorInfoReducer = (state= {doctorInfo:[]}, action) => {
+        
+    switch(action.type){
+        case VIEW_DOCTORINFO_REQUEST:
+            return{
+                ...state,
+                loading : true,
+            }
+
+        case VIEW_DOCTORINFO_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                doctorInfo : action.payload
+            }
+
+        case VIEW_DOCTORINFO_FAILED:
+            return{
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+
+        default:
+            return state
+    }
+}
+
+export const updateDoctorInfoReducer = (state= {updateDoctorInfo:[]}, action) => {
+    
+    switch(action.type){
+        case UPDATE_DOCTORINFO_REQUEST:
+            return{
+                ...state,
+                loading : true,
+            }
+
+        case UPDATE_DOCTORINFO_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                updateDoctorInfo : action.payload
+            }
+
+        case UPDATE_DOCTORINFO_FAILED:
+            return{
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+
+        default:
+            return state
+    }
+}
+
+export const  addExperienceReducer = (state = {}, action) => {
+        
+        switch(action.type){
+            case ADD_EXPERIENCE_REQUEST:
                 return {
                     loading : true
                 }
 
-            case ADD_EXPRIENCE_SUCCESS:
+            case ADD_EXPERIENCE_SUCCESS:
                 return {
                     success : action.payload
                 }
 
-            case ADD_EXPRIENCE_FAILED:
+            case ADD_EXPERIENCE_FAILED:
                 return {
                     error : action.payload
                 }
@@ -70,7 +203,35 @@ export const viewExperienceReducer = (state= {experiences:[]}, action) => {
         }
 }
 
-export const viewQualificationReducer = (state= {qualifications:[]}, action) => {
+export const updateExperienceReducer = (state= {}, action) => {
+        
+        switch(action.type){
+            case UPDATE_EXPERIENCE_REQUEST:
+                return{
+                    loading : true,
+                    ...state
+                }
+
+            case UPDATE_EXPERIENCE_SUCCESS:
+                return {
+                    ...state,
+                    loading : false,
+                    updateExperience : action.payload
+                }
+
+            case UPDATE_EXPERIENCE_FAILED:
+                return{
+                    ...state,
+                    loading : false,
+                    error : action.payload
+                }
+
+            default:
+                return state
+        }
+}
+
+export const viewQualificationReducer = (state= {qualification:[]}, action) => {
         
         switch(action.type){
             case VIEW_QUALIFICATION_REQUEST:
@@ -84,7 +245,7 @@ export const viewQualificationReducer = (state= {qualifications:[]}, action) => 
                 return {
                     ...state,
                     loading : false,
-                    qualifications : action.payload
+                    qualification : action.payload
                 }
 
             case VIEW_QUALIFICATION_FAILED:
@@ -99,53 +260,25 @@ export const viewQualificationReducer = (state= {qualifications:[]}, action) => 
         }
 }
 
-export const viewDoctorInfoReducer = (state= {doctorInfo:[]}, action) => {
+
+export const updateQualificationReducer = (state= {}, action) => {
         
         switch(action.type){
-            case VIEW_DOCTORINFO_REQUEST:
-                return{
-                    loading : true,
-                    ...state
-                }
-
-            case VIEW_DOCTORINFO_SUCCESS:
-                return {
-                    ...state,
-                    loading : false,
-                    doctorInfo : action.payload
-                }
-
-            case VIEW_DOCTORINFO_FAILED:
-                return{
-                    ...state,
-                    loading : false,
-                    error : action.payload
-                }
-
-            default:
-                return state
-        }
-}
-
-
-export const viewPersonalInfoReducer = (state= {personalInfo:[]}, action) => {
-        
-        switch(action.type){
-            case VIEW_DOCTOR_REQUEST:
+            case UPDATE_QUALIFICATION_REQUEST:
                 return{
                     ...state,
                     loading : true,
                     
                 }
 
-            case VIEW_DOCTOR_SUCCESS:
+            case UPDATE_QUALIFICATION_SUCCESS:
                 return {
                     ...state,
                     loading : false,
-                    personalInfo : action.payload
+                    updateQualifications : action.payload
                 }
 
-            case VIEW_DOCTOR_FAILED:
+            case UPDATE_QUALIFICATION_FAILED:
                 return{
                     ...state,
                     loading : false,
@@ -156,3 +289,7 @@ export const viewPersonalInfoReducer = (state= {personalInfo:[]}, action) => {
                 return state
         }
 }
+
+
+
+

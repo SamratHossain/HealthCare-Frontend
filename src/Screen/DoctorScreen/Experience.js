@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { FaPlusCircle, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { addExperienceAction, 
-         viewExperienceAction, 
+         viewExperienceAction,
+         updateExperienceAction 
          } from '../../Actions/DoctorActions'
 
 const Experience = () => {
@@ -12,16 +13,22 @@ const Experience = () => {
     const [hospitalName, setHospitalName] = useState('')
     const [designation, setDesignation] = useState('')
     const [department, setDepartment] = useState('')
-    const [currentlyWorking, setCurrentlyWorking] = useState(false)
+    const [currentlyWorking, setCurrentlyWorking] = useState('')
     const [from, setFrom] = useState('')
     const [to, setTo] = useState('')
+
+    console.log(hospitalName);
+    console.log(designation);
+    console.log(department);
+    console.log(from);
+    console.log(to);
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
     
     const viewExperience = useSelector(state => state.viewExperience)
-    const {experiences} = viewExperience 
-    console.log("experiences : ",experiences);   
+    const {experiences} = viewExperience
+    
     
     const dispatch = useDispatch()
 
@@ -30,16 +37,21 @@ const Experience = () => {
     useEffect(() => {
         if(userInfo){
             dispatch(viewExperienceAction())
-            console.log("call api for experience");
         }else{
             history.push('/login')
         }
     },[dispatch])
 
     
-    const submitHandler = (e) => {
+    const addSubmitHandler = (e) => {
         e.preventDefault()
+        console.log("I amm Add Click");
         dispatch(addExperienceAction(hospitalName, designation, department, currentlyWorking, from, to))
+    }
+
+    const updateSubmitHandler = (e) => {
+        e.preventDefault()
+        dispatch(updateExperienceAction(hospitalName, designation, department, currentlyWorking, from, to))
     }
     
     return (
@@ -63,13 +75,13 @@ const Experience = () => {
                                     <div className='mt-3 row'>
                                         <div className='col-8'>
                                             <span className='text-secondary'>Hospital Name</span>
-                                            <h2 className='fw-bold'>{experience.HospitalName}</h2>
+                                            <h4 className='fw-bold'>{experience.HospitalName}</h4>
                                         </div>
                                         <div className='col-4 d-flex justify-content-end'>
                                             <div className=''>
                         
                                                 <div type="button" class="btn btn-white fs-3 text-primary position-absolute  end-0 me-5" data-bs-toggle="modal" data-bs-target="#updateExperienceModal">
-                                                    <FaRegEdit />
+                                                    <FaRegEdit /> {experience.id}
                                                 </div>
                                                 <div class="modal fade" id="updateExperienceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -79,23 +91,23 @@ const Experience = () => {
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <form onSubmit={submitHandler}>
+                                                    <form onSubmit={updateSubmitHandler}>
                                                         <label className="form-label"> Hospital Name: </label>
                                                         <input className="form-control mb-2"
                                                             type="text"
-                                                            value={experience.HospitalName}
+                                                            // value={experience.HospitalName}
                                                             onChange={(e) => setHospitalName(e.target.value)}
                                                         />
                                                         <label className="form-label"> Designation: </label>
                                                         <input className="form-control mb-2"
                                                             type="text"
-                                                            value={experience.Designation}
+                                                            
                                                             onChange={(e) => setDesignation(e.target.value)} 
                                                         />
                                                         <label className="form-label"> Department: </label>
                                                         <input className="form-control mb-3"
                                                             type="text"
-                                                            value={experience.Department}
+                                                            
                                                             onChange={(e) => setDepartment(e.target.value)}
                                                         />
 
@@ -119,7 +131,7 @@ const Experience = () => {
                                                     <input className="form-control"
                                                            style={{width:"200px"}}
                                                            type="date"
-                                                           value={experience.From}
+                                                           
                                                            onChange={(e) => setFrom(e.target.value)}
                                                       />
                                                 </div>
@@ -129,7 +141,7 @@ const Experience = () => {
                                                     <input className="form-control"
                                                            style={{width:"200px"}} 
                                                            type="date"
-                                                           value={experience.To}
+                                                           
                                                            onChange={(e) => setTo(e.target.value)}
                                                            />
                                                 </div>)
@@ -211,7 +223,7 @@ const Experience = () => {
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form onSubmit={submitHandler}>
+                                        <form onSubmit={addSubmitHandler}>
                                             <label className="form-label"> Hospital Name: </label>
                                             <input className="form-control mb-2"
                                                    type="text"
@@ -267,7 +279,7 @@ const Experience = () => {
                                                 }
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Save</button>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </form>
                                     </div>

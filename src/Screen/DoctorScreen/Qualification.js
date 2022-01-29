@@ -6,6 +6,7 @@ import { FaPlusCircle, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 
 import {  
         viewQualificationAction,
+        updateQualificationAction
          } from '../../Actions/DoctorActions'
 
 const Qualification = () => {
@@ -21,7 +22,9 @@ const Qualification = () => {
     const {userInfo} = userLogin
     
     const viewQualification = useSelector(state => state.viewQualification)
-    const {qualifications} = viewQualification
+    const {qualification} = viewQualification
+
+    const id = qualification.id
 
     const dispatch = useDispatch()
 
@@ -38,7 +41,7 @@ const Qualification = () => {
     
     const submitHandler = (e) => {
         e.preventDefault()
-        // dispatch(addExperienceAction(hospitalName, designation, department, currentlyWorking, from, to))
+        dispatch(updateQualificationAction(id, specialist, degreeName, instituteName, country, passingYear))
     }
     
     return (
@@ -49,7 +52,7 @@ const Qualification = () => {
                         <h2 className="fw-bold d-inline ms-5" >Qualification</h2>
 
                         
-                            { qualifications.map(qualification => (
+                            { 
                                 <div>
                                     <div class="card mx-5 my-3">
                                         <div class="card-body">
@@ -77,34 +80,34 @@ const Qualification = () => {
                                                         <label className="form-label"> Speciality: </label>
                                                         <input className="form-control mb-2"
                                                             type="text"
-                                                            value={qualification.Specialist}
+                                                            // value={qualification.Specialist}
                                                             onChange={(e) => setSpecialist(e.target.value)}
                                                         />
 
                                                         <label className="form-label"> Degree Name: </label>
                                                         <input className="form-control mb-2"
                                                             type="text"
-                                                            value={qualification.DegreeName}
+                                                            // value={qualification.DegreeName}
                                                             onChange={(e) => setDegreeName(e.target.value)} 
                                                         />
 
                                                         <label className="form-label"> Institute Name: </label>
                                                         <input className="form-control mb-3"
                                                             type="text"
-                                                            value={qualification.InstituteName}
+                                                            // value={qualification.InstituteName}
                                                             onChange={(e) => setInstituteName(e.target.value)}
                                                         />
 
                                                         <label className="form-label"> Country: </label>
                                                         <input className="form-control mb-3"
                                                             type="text"
-                                                            value={qualification.Country}
+                                                            // value={qualification.Country}
                                                             onChange={(e) => setCountry(e.target.value)}
                                                         />
                                                         <label className="form-label"> Passing Year: </label>
                                                         <input className="form-control mb-3"
-                                                            type="text"
-                                                            value={qualification.PassingYear}
+                                                            type="date"
+                                                            // value={qualification.PassingYear}
                                                             onChange={(e) => setPassingYear(e.target.value)}
                                                         />
 
@@ -149,9 +152,9 @@ const Qualification = () => {
                                         </div>
                                     </div>
                                 </div>
-                            )
+                            
 
-                            )}
+                            }
                     </div>
                 </div>
             </div>

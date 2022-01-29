@@ -5,20 +5,31 @@ import { PatientSignupReducer } from "./Reducers/UserReducers";
 import { DoctorSignupReducer } from "./Reducers/UserReducers";
 import { CheckExistingDoctorReducer } from "./Reducers/UserReducers";
 import { UserLoginReducer } from "./Reducers/UserReducers"
-import { viewExperienceReducer,
-        viewQualificationReducer, 
-        viewDoctorInfoReducer,
-        viewPersonalInfoReducer } from "./Reducers/DoctorReducers";
+import { viewPersonalInfoReducer,
+         updatePersonalInfoReducer,
+         viewDoctorInfoReducer,
+         updateDoctorInfoReducer,
+         addExperienceReducer, 
+         viewExperienceReducer,
+         updateExperienceReducer,
+         viewQualificationReducer,
+         updateQualificationReducer
+         } from "./Reducers/DoctorReducers";
 
 const rootReducer = combineReducers({
     patientSignup : PatientSignupReducer,
     doctorSignup : DoctorSignupReducer,
     checkExistingDoctor : CheckExistingDoctorReducer,
     userLogin : UserLoginReducer,
-    viewExperience : viewExperienceReducer,
-    viewQualification : viewQualificationReducer,
+    viewPersonalInfo : viewPersonalInfoReducer,
+    updatePersonalInfo : updatePersonalInfoReducer,
     viewDoctorInfo : viewDoctorInfoReducer,
-    viewPersonalInfo : viewPersonalInfoReducer
+    updateDoctorInfo : updateDoctorInfoReducer,
+    addExperience : addExperienceReducer,
+    viewExperience : viewExperienceReducer,
+    updateExperience : updateExperienceReducer,
+    viewQualification : viewQualificationReducer,
+    updateQualification : updateQualificationReducer
 })
 
 const userTokenFromLocalStorage = localStorage.getItem('UserInfo')?

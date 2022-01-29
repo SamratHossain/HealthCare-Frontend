@@ -5,8 +5,9 @@ import { useHistory } from 'react-router-dom'
 import DoctorNavbar from './DoctorNavbar'
 import propic from '../images/propic.jpg'
 import Experience from './DoctorScreen/Experience'
-import DoctorInfo from './DoctorScreen/DoctorInfo'
+import PersonalInfo from './DoctorScreen/PersonalInfo'
 import Qualification from './DoctorScreen/Qualification'
+import DoctorInfo from './DoctorScreen/DoctorInfo'
 
 const DoctorProfile = () => {
 
@@ -25,6 +26,7 @@ const DoctorProfile = () => {
             </div>
             <div style={{width: 800}} className='m-auto'>
                 
+                <PersonalInfo />
                 <DoctorInfo />
                 <Experience />
                 <Qualification />
