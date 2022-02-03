@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { FaPlusCircle, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { addExperienceAction, 
          viewExperienceAction,
@@ -17,11 +17,6 @@ const Experience = () => {
     const [from, setFrom] = useState('')
     const [to, setTo] = useState('')
 
-    console.log(hospitalName);
-    console.log(designation);
-    console.log(department);
-    console.log(from);
-    console.log(to);
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -53,6 +48,10 @@ const Experience = () => {
         e.preventDefault()
         dispatch(updateExperienceAction(hospitalName, designation, department, currentlyWorking, from, to))
     }
+
+    const updateHandler = (id) => {
+        // history.push('/doctor/profile/update-experience/$`{id}`')
+    }
     
     return (
         <div className="container-fluid h-auto" style={{backgroundColor: "#f0f2f5"}}>
@@ -80,78 +79,17 @@ const Experience = () => {
                                         <div className='col-4 d-flex justify-content-end'>
                                             <div className=''>
                         
-                                                <div type="button" class="btn btn-white fs-3 text-primary position-absolute  end-0 me-5" data-bs-toggle="modal" data-bs-target="#updateExperienceModal">
-                                                    <FaRegEdit /> {experience.id}
-                                                </div>
+                                                <div className='btn btn-white fs-3'>
+                                                    <Link to = {'/doctor/profile/update-experience/' + experience.id}>  <FaRegEdit /> </Link>     
+                                               </div>
                                                 <div class="modal fade" id="updateExperienceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLabel">Update Your Experience</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                    <form onSubmit={updateSubmitHandler}>
-                                                        <label className="form-label"> Hospital Name: </label>
-                                                        <input className="form-control mb-2"
-                                                            type="text"
-                                                            // value={experience.HospitalName}
-                                                            onChange={(e) => setHospitalName(e.target.value)}
-                                                        />
-                                                        <label className="form-label"> Designation: </label>
-                                                        <input className="form-control mb-2"
-                                                            type="text"
-                                                            
-                                                            onChange={(e) => setDesignation(e.target.value)} 
-                                                        />
-                                                        <label className="form-label"> Department: </label>
-                                                        <input className="form-control mb-3"
-                                                            type="text"
-                                                            
-                                                            onChange={(e) => setDepartment(e.target.value)}
-                                                        />
-
-                                                        <label className="form-label mb-2 fw-bold"> Employment Period </label>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input"
-                                                                type="checkbox"
-                                                                value={true}
-                                                                id="flexCheckDefault"
                                                                 
-                                                                onChange={(e) => setCurrentlyWorking(e.target.value)}
-                                                        />
-                                                       
-                                                        <label class="form-check-label mb-3" for="flexCheckDefault">
-                                                            Currently Working
-                                                        </label>
-                                                </div>
-                                                <div className="row">
-                                                <div className="col-6">
-                                                    <label className="form-label mb-2"> From: </label>
-                                                    <input className="form-control"
-                                                           style={{width:"200px"}}
-                                                           type="date"
-                                                           
-                                                           onChange={(e) => setFrom(e.target.value)}
-                                                      />
-                                                </div>
-                                                {!currentlyWorking && (
-                                                <div className="col-6">
-                                                    <label className="form-label mb-2"> To: </label>
-                                                    <input className="form-control"
-                                                           style={{width:"200px"}} 
-                                                           type="date"
-                                                           
-                                                           onChange={(e) => setTo(e.target.value)}
-                                                           />
-                                                </div>)
-                                                }
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Save</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                                    </div>
+                                                    
                                     
                                 </div>
                             </div>

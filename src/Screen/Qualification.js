@@ -86,7 +86,6 @@ const Qualification = () => {
         'Colorectal Surgery',
         'Herbal Medicine',
         'Occupational Therapy'
-
     ]
 
     return (

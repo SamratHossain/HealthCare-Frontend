@@ -11,20 +11,22 @@ import {
 
 const Qualification = () => {
 
-    const [specialist, setSpecialist] = useState('')
-    const [degreeName, setDegreeName] = useState('')
-    const [instituteName, setInstituteName] = useState('')
-    const [country, setCountry] = useState(false)
-    const [passingYear, setPassingYear] = useState('')
-    
+    const viewQualification = useSelector(state => state.viewQualification)
+    const {qualification} = viewQualification
+    console.log("dg: ", qualification.DegreeName);
 
+    const [specialist, setSpecialist] = useState(qualification.Specialist)
+    const [degreeName, setDegreeName] = useState(qualification.DegreeName)
+    const [instituteName, setInstituteName] = useState(qualification.InstituteName)
+    const [country, setCountry] = useState(qualification.Country)
+    const [passingYear, setPassingYear] = useState(qualification.PassingYear)
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
     
-    const viewQualification = useSelector(state => state.viewQualification)
-    const {qualification} = viewQualification
+    
 
     const id = qualification.id
+    console.log("dg: ", qualification.DegreeName);
 
     const dispatch = useDispatch()
 
@@ -43,6 +45,72 @@ const Qualification = () => {
         e.preventDefault()
         dispatch(updateQualificationAction(id, specialist, degreeName, instituteName, country, passingYear))
     }
+
+    const updateHandler = () => {
+        history.push('/doctor/profile/update-qualification')
+    }
+
+    const degree = [
+        'MBBS',
+        'BDS',
+        'BMBS',
+        'MBChB',
+        'MD',
+        'Dr.MuD',
+        'Dr.Med',
+        'MCM',
+        'MMSc',
+        'MMedSc',
+        'MM,',
+        'MMed',
+        'MPhil',
+        'MCh',
+        'ChM',
+        'DCM',
+        'MSc',
+        'DMSc',
+        'DS',
+        'DA',
+        'DLO',
+        'DEM',
+        'DCH',
+        'DTCT',
+        'MRCP'
+    ]
+    
+
+    const speciality = [
+        'General Physician',
+        'Internal Medicine',
+        'Pediatrics',
+        'Dentistry',
+        'Gynaecology',
+        'Dermatology',
+        'Cardiology',
+        'ENT',
+        'Ophthalmology',
+        'Pulmonology',
+        'Gastroenterology',
+        'Neurology',
+        'Neurology',
+        'Obsterics',
+        'Orthopedics',
+        'Endocrinology',
+        'Urology',
+        'Neurosurgery',
+        'Nephrology',
+        'Oncology',
+        'Psychiatry',
+        'Parasitology',
+        'Plastic Surgery',
+        'Podiatry',
+        'Vascular Surgery',
+        'Chiropractic',
+        'Colorectal Surgery',
+        'Herbal Medicine',
+        'Occupational Therapy'
+
+    ]
     
     return (
         <div className="container-fluid h-auto" style={{backgroundColor: "#f0f2f5"}}>
@@ -65,7 +133,7 @@ const Qualification = () => {
                                         <div className='col-4 d-flex justify-content-end'>
                                             <div className=''>
                         
-                                                <div type="button" class="btn btn-white fs-3 text-primary position-absolute  end-0 me-5" data-bs-toggle="modal" data-bs-target="#updateQualificationModal">
+                                                <div type="button" onClick={updateHandler} class="btn btn-white fs-3 text-primary position-absolute  end-0 me-5">
                                                     <FaRegEdit />
                                                 </div>
                                                 <div class="modal fade" id="updateQualificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -76,47 +144,7 @@ const Qualification = () => {
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <form onSubmit={submitHandler}>
-                                                        <label className="form-label"> Speciality: </label>
-                                                        <input className="form-control mb-2"
-                                                            type="text"
-                                                            // value={qualification.Specialist}
-                                                            onChange={(e) => setSpecialist(e.target.value)}
-                                                        />
-
-                                                        <label className="form-label"> Degree Name: </label>
-                                                        <input className="form-control mb-2"
-                                                            type="text"
-                                                            // value={qualification.DegreeName}
-                                                            onChange={(e) => setDegreeName(e.target.value)} 
-                                                        />
-
-                                                        <label className="form-label"> Institute Name: </label>
-                                                        <input className="form-control mb-3"
-                                                            type="text"
-                                                            // value={qualification.InstituteName}
-                                                            onChange={(e) => setInstituteName(e.target.value)}
-                                                        />
-
-                                                        <label className="form-label"> Country: </label>
-                                                        <input className="form-control mb-3"
-                                                            type="text"
-                                                            // value={qualification.Country}
-                                                            onChange={(e) => setCountry(e.target.value)}
-                                                        />
-                                                        <label className="form-label"> Passing Year: </label>
-                                                        <input className="form-control mb-3"
-                                                            type="date"
-                                                            // value={qualification.PassingYear}
-                                                            onChange={(e) => setPassingYear(e.target.value)}
-                                                        />
-
-                                                        
-                                                
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Save</button>
-                                            </div>
-                                        </form>
+                                                    
                                     </div>
                                     
                                 </div>
