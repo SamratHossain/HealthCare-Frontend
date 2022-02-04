@@ -28,6 +28,10 @@ import {
         VIEW_EXPERIENCE_SUCCESS,
         VIEW_EXPERIENCE_FAILED,
 
+        DELETE_EXPERIENCE_REQUEST,
+        DELETE_EXPERIENCE_SUCCESS,
+        DELETE_EXPERIENCE_FAILED,
+
         VIEW_QUALIFICATION_REQUEST,
         VIEW_QUALIFICATION_SUCCESS,
         VIEW_QUALIFICATION_FAILED,
@@ -286,6 +290,43 @@ export const updateExperienceAction = (hospitalName, designation, department, cu
                 dispatch({
                     type : UPDATE_EXPERIENCE_FAILED,
                     payload : error.response.data
+                })
+            }
+    
+}
+
+export const deleteExperienceAction = (id) => async (dispatch, getState) => {
+
+            try{
+                dispatch({
+                    type : DELETE_EXPERIENCE_REQUEST
+                })
+        
+                const {
+                    userLogin : {userInfo}
+                } = getState()
+        
+                const config = {
+                    headers : {
+                        'Content-Type' : 'application/json',
+                        Authorization : `Bearer ${userInfo.data.access}`
+                    }
+                }
+        
+                const {data} = await axios.post(
+                    "/api/doctors/delete-experience/",
+                    {"Id": id},
+                    config
+                )
+        
+                dispatch({
+                    type : DELETE_EXPERIENCE_SUCCESS,
+                    payload : data
+                })
+            }catch(error){
+                dispatch({
+                    type : DELETE_EXPERIENCE_FAILED,
+                    payload : error
                 })
             }
     

@@ -5,7 +5,7 @@ import { useHistory, Link } from 'react-router-dom'
 import { FaPlusCircle, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { addExperienceAction, 
          viewExperienceAction,
-         updateExperienceAction 
+         deleteExperienceAction 
          } from '../../Actions/DoctorActions'
 
 const Experience = () => {
@@ -24,7 +24,6 @@ const Experience = () => {
     const viewExperience = useSelector(state => state.viewExperience)
     const {experiences} = viewExperience
     
-    
     const dispatch = useDispatch()
 
     const history = useHistory()
@@ -37,21 +36,23 @@ const Experience = () => {
         }
     },[dispatch])
 
-    
+    const refresh = () => { 
+        dispatch(viewExperienceAction())
+    }
+
     const addSubmitHandler = (e) => {
         e.preventDefault()
-        console.log("I amm Add Click");
         dispatch(addExperienceAction(hospitalName, designation, department, currentlyWorking, from, to))
+        window.location.reload(false)
     }
 
-    const updateSubmitHandler = (e) => {
-        e.preventDefault()
-        dispatch(updateExperienceAction(hospitalName, designation, department, currentlyWorking, from, to))
+   
+
+    const deleteHandler = (id) => {
+        dispatch(deleteExperienceAction(id))
+        window.location.reload(false)
     }
 
-    const updateHandler = (id) => {
-        // history.push('/doctor/profile/update-experience/$`{id}`')
-    }
     
     return (
         <div className="container-fluid h-auto" style={{backgroundColor: "#f0f2f5"}}>
@@ -80,7 +81,7 @@ const Experience = () => {
                                             <div className=''>
                         
                                                 <div className='btn btn-white fs-3'>
-                                                    <Link to = {'/doctor/profile/update-experience/' + experience.id}>  <FaRegEdit /> </Link>     
+                                                    <Link to = {`/doctor/profile/update-experience/${experience.id}`}>  <FaRegEdit /> </Link>     
                                                </div>
                                                 <div class="modal fade" id="updateExperienceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -97,9 +98,10 @@ const Experience = () => {
                         
                     
                                             </div>
-                                            <div className='btn btn-white fs-3 text-danger'>
+                                            <div onClick={() => deleteHandler(experience.id)} className='btn btn-white fs-3 text-danger'>
                                                 <FaRegTrashAlt />
                                             </div>
+                                            
                                         </div>
                                     </div>
                 

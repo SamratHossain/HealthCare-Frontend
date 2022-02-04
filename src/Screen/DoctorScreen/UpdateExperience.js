@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { FaPlusCircle, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { addExperienceAction, 
          viewExperienceAction,
          updateExperienceAction 
