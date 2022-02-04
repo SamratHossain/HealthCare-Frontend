@@ -15,6 +15,10 @@ import {
         UPDATE_DOCTORINFO_REQUEST,
         UPDATE_DOCTORINFO_SUCCESS,
         UPDATE_DOCTORINFO_FAILED,
+
+        CHANGE_DOCTOR_PROFILE_REQUEST,
+        CHANGE_DOCTOR_PROFILE_SUCCESS,
+        CHANGE_DOCTOR_PROFILE_FAILED,
     
         ADD_EXPERIENCE_REQUEST,
         ADD_EXPERIENCE_SUCCESS,
@@ -185,6 +189,42 @@ export const updateDoctorInfoAction = (id, startTime, endTime, availableDay, con
     }
 }
 
+export const changeDoctorProfilePhotoAction = (photo) => async (dispatch, getState) => {
+
+    try{
+        dispatch({
+            type : CHANGE_DOCTOR_PROFILE_REQUEST,
+        })
+
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json',
+                Authorization : `Bearer ${userInfo.data.access}`
+            }
+        }
+
+        const {data} = await axios.post(
+            "/api/doctors/change-doctor-profile-photo/",
+            photo,
+            config
+        )
+
+        dispatch({
+            type : CHANGE_DOCTOR_PROFILE_SUCCESS,
+            payload : data
+        })
+    }catch(error){
+        dispatch({
+            type : CHANGE_DOCTOR_PROFILE_FAILED,
+            payload : error
+        })
+    }
+}
+
 
 export const addExperienceAction = (hospitalName, designation, department, currentlyWorking, from, to) => async (dispatch, getState) => {
         try{
@@ -258,7 +298,7 @@ export const viewExperienceAction = () => async (dispatch, getState) => {
     
 }
 
-export const updateExperienceAction = (hospitalName, designation, department, currentlyWorking, from, to) => async (dispatch, getState) => {
+export const updateExperienceAction = (id, hospitalName, designation, department, currentlyWorking, from, to) => async (dispatch, getState) => {
 
             try{
                 dispatch({
@@ -278,7 +318,7 @@ export const updateExperienceAction = (hospitalName, designation, department, cu
         
                 const {data} = await axios.post(
                     "/api/doctors/update-experience/",
-                    {"HospitalName": hospitalName, "Designation":designation, "Department":department, "CurrentlyWorking":currentlyWorking, "From":from, "To":to},
+                    {"Id": id,"HospitalName": hospitalName, "Designation":designation, "Department":department, "CurrentlyWorking":currentlyWorking, "From":from, "To":to},
                     config
                 )
         

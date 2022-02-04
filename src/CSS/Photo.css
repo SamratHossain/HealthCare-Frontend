@@ -1,0 +1,22 @@
+.docPhoto {
+    display: none;
+}
+
+.photoUpload{
+    background-color: rgb(54, 54, 231);
+    color: white;
+    height: 40px;
+    width: 180px;
+    border-radius: 20px;
+    position: absolute;
+    margin-left: 280px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    display: flex;
+}
+
+.upload{
+    margin-left: 180px;
+}

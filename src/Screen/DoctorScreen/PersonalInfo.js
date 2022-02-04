@@ -3,16 +3,20 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { FaPlusCircle, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
-import propic from '../../images/propic.jpg'
+import '../../CSS/Photo.css'
 import {
-        viewDoctorInfoAction,
         viewPersonalInfoAction,
-        updatePersonalInfoAction } from '../../Actions/DoctorActions'
+        updatePersonalInfoAction,
+        changeDoctorProfilePhotoAction } from '../../Actions/DoctorActions'
 
 const PersonalInfo = () => {
 
     const viewPersonalInfo = useSelector(state => state.viewPersonalInfo)
     const {personalInfo} = viewPersonalInfo
+
+    const viewDoctorInfo = useSelector(state => state.viewDoctorInfo)
+    const {doctorInfo} = viewDoctorInfo
+    const photoId = doctorInfo.id
 
     console.log("update: ",personalInfo.FirstName);
     const [title, setTitle] = useState(personalInfo.Title);
@@ -23,7 +27,7 @@ const PersonalInfo = () => {
     const [gender, setGender] = useState(personalInfo.Gender);
     const [dateOfBirth, setDateOfBirth] = useState(personalInfo.DateOfBirth);
     const id = personalInfo.id
-
+    const [profilePhoto, setProfilePhoto] = useState('')
 
 
     const userLogin = useSelector(state => state.userLogin)
@@ -41,15 +45,20 @@ const PersonalInfo = () => {
         }
     },[dispatch])
 
-    // var name = "messi"
-    
-    const submitHandler = (e) => {
-        e.preventDefault()
-        dispatch(updatePersonalInfoAction(id ,title, firstName, lastName, email, mobile, gender, dateOfBirth))
-    }
 
     const updateHandler = () => {
         history.push('/doctor/profile/update-personal-info')
+    }
+
+    const photo = new FormData()
+    
+    photo.append("ProfilePhoto", profilePhoto)
+    photo.append("Id", photoId)
+
+    const photoUpload = (e) => {
+        e.preventDefault()
+        dispatch(changeDoctorProfilePhotoAction(photo))
+        window.location.reload(false)
     }
     
     return (
@@ -65,10 +74,25 @@ const PersonalInfo = () => {
                                                 
                                     <div className='mt-3 row'>
                                             <div className='text-center'>
-                                                <img style={{width: 100, height: 100}} className='rounded-circle' src={propic}/>
-                                                <p>Change Pic</p>
+                                                <img style={{width: 100, height: 100}} 
+                                                className='rounded-circle mb-2' 
+                                                src={doctorInfo.ProfilePhoto}/>
                                             </div>
-                                        <div className='col-8'>
+                                            <div>
+                                                <input className="docPhoto"
+                                                    type='file' id='file' 
+                                                    accept='image/*'
+                                                    onChange={(e) => setProfilePhoto(e.target.files[0])}
+                                                 />
+                                                <label className="photoUpload" for='file'>
+                                                    Change Photo
+                                                </label>
+                                                <div className='upload'>
+                                                    <button onClick={photoUpload} className='btn btn-primary'>Upload</button>
+                                                </div>
+                                            </div>
+                                            
+                                        <div className='col-8 mt-5'>
                                             
                                             <span className='text-secondary'>Title</span>
                                             <h5 className='fw-bold'>{personalInfo.Title}</h5>

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { FaPlusCircle, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
-import propic from '../../images/propic.jpg'
+
 import {
         viewDoctorInfoAction,
         updateDoctorInfoAction,
@@ -46,6 +46,7 @@ const UpdateDoctorInfo = () => {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(updateDoctorInfoAction(id, startTime, endTime, availableDay, consultationFee, followUpDuration, consultDuration, followupFee))
+        history.push('/doctor/profile')
     }
 
     const followupDurations = [

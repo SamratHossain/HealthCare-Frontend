@@ -18,7 +18,7 @@ import Availability from "./Screen/Availability";
 import ConsultationFee from "./Screen/ConsultationFee";
 import NidCard from "./Screen/NidCard";
 import Done from "./Screen/Done";
-import UpdatePersonalInfo from "./Screen/DoctorScreen/updatePersonalInfo";
+import UpdatePersonalInfo from "./Screen/DoctorScreen/UpdatePersonalInfo";
 import UpdateDoctorInfo from "./Screen/DoctorScreen/UpdateDoctorInfo";
 import UpdateQualification from "./Screen/DoctorScreen/UpdateQualification";
 import UpdateExperience from "./Screen/DoctorScreen/UpdateExperience";

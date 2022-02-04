@@ -1,9 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-    viewDoctorInfoAction,
-    viewPersonalInfoAction,
     updatePersonalInfoAction } from '../../Actions/DoctorActions'
 
 
@@ -23,9 +22,12 @@ const UpdatePersonalInfo = () => {
 
     const dispatch = useDispatch()
 
+    const history = useHistory()
+
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(updatePersonalInfoAction(id ,title, firstName, lastName, email, mobile, gender, dateOfBirth))
+        history.push('/doctor/profile')
     }
 
     return (

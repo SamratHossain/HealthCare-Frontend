@@ -26,7 +26,7 @@ const UpdateQualification = () => {
     
 
     const id = qualification.id
-    console.log("dg: ", qualification.DegreeName);
+    
 
     const dispatch = useDispatch()
 
@@ -44,6 +44,7 @@ const UpdateQualification = () => {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(updateQualificationAction(id, specialist, degreeName, instituteName, country, passingYear))
+        history.push('/doctor/profile')
     }
 
     const degree = [

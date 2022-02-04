@@ -89,7 +89,6 @@ const NidCard = () => {
     DoctorsData.append("WithinDuration",WithinDuration)
     DoctorsData.append("NidPhoto",NidPhoto)
     DoctorsData.append("ProfilePhoto",ProfilePhoto)
-
     
     const history = useHistory()
     const dispatch = useDispatch()

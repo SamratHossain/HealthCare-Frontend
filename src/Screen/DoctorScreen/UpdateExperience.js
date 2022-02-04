@@ -38,8 +38,8 @@ const UpdateExperience = (props) => {
     const [from, setFrom] = useState(From)
     const [to, setTo] = useState(To)
 
-    console.log("hpName: ",hospitalName);
-
+    const updateExperience = useSelector(state => state.updateExperience)
+    const {success} = updateExperience
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -58,11 +58,16 @@ const UpdateExperience = (props) => {
         }
     },[dispatch])
 
+    // if(success){
+    //     history.push('/doctor/profile')
+    // }
+
     
 
     const updateSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(updateExperienceAction(hospitalName, designation, department, currentlyWorking, from, to))
+        dispatch(updateExperienceAction(id, hospitalName, designation, department, currentlyWorking, from, to))
+        history.push('/doctor/profile')
     }
 
     
