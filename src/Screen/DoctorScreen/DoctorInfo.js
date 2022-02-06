@@ -25,8 +25,6 @@ const DoctorInfo = () => {
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
-    
-    
 
     const id = doctorInfo.id
 

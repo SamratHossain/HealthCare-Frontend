@@ -10,7 +10,6 @@ import DoctorSignup from "./Screen/DoctorSignup";
 import PatientSignup from "./Screen/PatientSignup";
 import Login from "./Screen/Login";
 import DoctorHome from "./Screen/DoctorHome";
-import PatientHome from "./Screen/PatientHome";
 import DoctorProfile from "./Screen/DoctorProfile";
 import Qualification from "./Screen/Qualification";
 import Experience from "./Screen/Experience";
@@ -22,6 +21,9 @@ import UpdatePersonalInfo from "./Screen/DoctorScreen/UpdatePersonalInfo";
 import UpdateDoctorInfo from "./Screen/DoctorScreen/UpdateDoctorInfo";
 import UpdateQualification from "./Screen/DoctorScreen/UpdateQualification";
 import UpdateExperience from "./Screen/DoctorScreen/UpdateExperience";
+
+import PatientHome from "./Screen/PatientScreen/PatientHome";
+import FindDoctors from "./Screen/PatientScreen/FindDoctors";
 
 const App = () => {
   return (
@@ -40,13 +42,15 @@ const App = () => {
               <Route exact path="/doctor/profile/update-doctor-info"> <UpdateDoctorInfo /> </Route>
               <Route exact path="/doctor/profile/update-qualification"> <UpdateQualification /> </Route>
               <Route exact path="/doctor/profile/update-experience/:id"> <UpdateExperience /> </Route>
-              <Route exact path="/patient/home"> <PatientHome /> </Route>
               <Route exact path="/doctor/signup/qualification"> <Qualification /> </Route>
               <Route exact path="/doctor/signup/experience"> <Experience /> </Route>
               <Route exact path="/doctor/signup/availability"> <Availability /> </Route>
               <Route exact path="/doctor/signup/consultationfee"> <ConsultationFee /> </Route>
               <Route exact path="/doctor/signup/nidcard"> <NidCard /> </Route>
               <Route exact path="/doctor/signup/done"> <Done /> </Route>
+
+              <Route exact path="/patient/home"> <PatientHome /> </Route>
+              <Route exact path="/patient/find-doctor"> <FindDoctors /> </Route>
             </Switch>
         </BrowserRouter> 
       </div>
