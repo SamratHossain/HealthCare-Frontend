@@ -3,27 +3,28 @@ import Navbar from '../../Components/Patient/Navbar';
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
-import { findDoctor } from '../../Actions/PatientAction';
+import { 
+  viewDoctorsCategory,
+  searchDoctorsCategory } from '../../Actions/PatientAction';
 import '../../CSS/Patient/find-doctor.css'
 
-const FindDoctors = () => {
+const SearchCategory = () => {
+
+  const [name, setName] = useState('')
+  
 
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
 
-  const doctorCategories = useSelector(state => state.doctorCategories)
-  const {categories} = doctorCategories
-
-  console.log("cat: ",categories);
-
-
+  const searchCategoryResult = useSelector(state => state.searchCategoryResult)
+  const {searchCategories} = searchCategoryResult
 
   const dispatch = useDispatch()
   const history = useHistory()
     
   useEffect(() => {
     if(userInfo){
-        dispatch(findDoctor())                                
+        dispatch(viewDoctorsCategory())                                
     }else{
         history.push('/login')
     }
@@ -33,14 +34,17 @@ const FindDoctors = () => {
     history.push('/doctor-list')
   }
 
+
   return(
       <div>
           <Navbar />
           <div>
             <div className='container-fluid find-doctor'>
+                         
               <div className='row doctor-list justify-content-center'>
+                
                 {
-                  categories.map((category) => (
+                  searchCategories.map((category) => (
                     
                     <div className='col-lg-4 col-12 '>
                       <div className='rounded my-2 p-3 category' onClick={categoryHandler}>
@@ -59,4 +63,4 @@ const FindDoctors = () => {
   )
 }
 
-export default FindDoctors;
+export default SearchCategory;

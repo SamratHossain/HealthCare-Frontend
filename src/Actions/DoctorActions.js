@@ -444,7 +444,3 @@ export const updateQualificationAction = (id, specialist, degreeName, instituteN
             }
     
 }
-
-
-
-
