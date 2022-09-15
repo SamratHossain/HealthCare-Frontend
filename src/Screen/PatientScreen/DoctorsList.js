@@ -5,6 +5,7 @@ import { doctorsListAction } from '../../Actions/PatientAction';
 import Navbar from '../../Components/Patient/Navbar';
 import { useHistory, Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
+import '../../CSS/Patient/doctorlist.css'
 
 const DoctorsList = (props) => {
 
@@ -66,6 +67,7 @@ const DoctorsList = (props) => {
   return(
     <div>
         <Navbar />
+        
         <div>
           <div className='container-fluid find-doctor'>
           
