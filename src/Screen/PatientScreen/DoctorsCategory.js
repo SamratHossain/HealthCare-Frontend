@@ -8,7 +8,7 @@ import {
   searchDoctorsCategory } from '../../Actions/PatientAction';
 import '../../CSS/Patient/find-doctor.css'
 
-const DoctorsCategory = () => {
+const DoctorsCategory = (props) => {
 
   const [name, setName] = useState('')
   
@@ -31,7 +31,7 @@ const DoctorsCategory = () => {
   },[dispatch])
 
   const categoryHandler = () => {
-    history.push('/doctor-list')
+    history.push(`/patient/doctor-list`)
   }
 
   const searchHandler = (e) => {
@@ -65,14 +65,20 @@ const DoctorsCategory = () => {
                 
                 {
                   categories.map((category) => (
-                    
+                      
                     <div className='col-lg-4 col-12 '>
-                      <div className='rounded my-2 p-3 category' onClick={categoryHandler}>
+                    <Link to={{
+                      pathname:'/patient/doctor-list',
+                      state: {spname: category.name}
+                    }}>
+                      <div className='rounded my-2 p-3 category' >
                           <h5 className='text-center text-white fs-4 fw-bold'>{category.name}</h5>
                           <p className=' text-white fs-4 mt-3'>{category.about}</p>
+                        
                       </div>
+                      </Link>
                     </div>
-                
+                   
                   ))
                 }
               </div>

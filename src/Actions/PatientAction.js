@@ -33,7 +33,7 @@ export const  viewDoctorsCategory = () => async (dispatch, getState) => {
         }
 
         const {data} = await axios.get(
-            "/api/doctors/view-category/",
+            "/api/patients/view-category/",
             config
         )
 
@@ -49,7 +49,7 @@ export const  viewDoctorsCategory = () => async (dispatch, getState) => {
     }
 }
 
-export const doctorsList = () => async (dispatch, getState) => {
+export const doctorsListAction = () => async (dispatch, getState) => {
     try{
         dispatch({
             type : DOCTOR_LIST_REQUEST
@@ -67,7 +67,7 @@ export const doctorsList = () => async (dispatch, getState) => {
         }
 
         const {data} = await axios.get(
-            "/api/doctors/view-category/",
+            "/api/patients/doctor-list/",
             config
         )
 
@@ -102,7 +102,7 @@ export const  searchDoctorsCategory = (name) => async (dispatch, getState) => {
         }
 
         const {data} = await axios.get(
-            `/api/doctors/search-category/${name}`,
+            `/api/patients/search-category/${name}`,
             
             config
         )

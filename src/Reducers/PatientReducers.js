@@ -3,6 +3,10 @@ import {
     FIND_DOCTOR_SUCCESSFUL,
     FIND_DOCTOR_FAILED,
 
+    DOCTOR_LIST_REQUEST,
+    DOCTOR_LIST_SUCCESSFUL,
+    DOCTOR_LIST_FAILED,
+
     SEARCH_CATEGORY_REQUEST,
     SEARCH_CATEGORY_SUCCESS,
     SEARCH_CATEGORY_FAILED,
@@ -52,6 +56,33 @@ export const searchCategoryReducer = (state = {searchCategories: []}, action) =>
             }
 
         case SEARCH_CATEGORY_FAILED:
+            return {
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+        
+        default:
+            return state
+    }
+}
+
+export const doctorListReducer = (state = {doctorList: []}, action) => {
+    switch(action.type){
+        case DOCTOR_LIST_REQUEST:
+            return {
+                ...state,
+                loading : true, 
+            }
+
+        case DOCTOR_LIST_SUCCESSFUL:
+            return {
+                ...state,
+                loading : false,
+                doctorList : action.payload
+            }
+
+        case DOCTOR_LIST_FAILED:
             return {
                 ...state,
                 loading : false,
