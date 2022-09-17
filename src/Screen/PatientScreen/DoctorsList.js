@@ -64,10 +64,15 @@ const DoctorsList = (props) => {
     history.push('search-result')
   }
 
+  const doctorlistHandler = (e) => {
+    e.preventDefault()
+    // dispatch(searchDoctorsCategory(DoctorName))
+    history.push('search-result')
+  }
+
   return(
     <div>
         <Navbar />
-        
         <div>
           <div className='container-fluid find-doctor'>
           
@@ -85,43 +90,68 @@ const DoctorsList = (props) => {
               <button type="submit" className="btn btn-success mb-3">Search</button>
             </div>
           </form>
+        
+          <div>
             
-            <div className='row doctor-list justify-content-center'>
-              
-              {
+          <div class="container-fluid">
+        <div class="row">
+            <div class="row">    
+            {
                 doctorList.map((doctorLists) => {
                   if(doctorLists.qualificationInfo[0].Specialist == specialist){
-                    return( 
-                  <div className='col-lg-4 col-12 '>
-                    <div className='rounded my-2 p-3 category' onClick={categoryHandler}>
-                        <h5 className='text-center text-white fs-4 fw-bold'>{doctorLists.id}</h5>
-                        <p className=' text-white fs-4 mt-3'>{doctorLists.qualificationInfo[0].Specialist}</p>
-                        <p className=' text-white fs-4 mt-3'>{doctorLists.qualificationInfo[0].DegreeName}</p>
-                        <p className=' text-white fs-4 mt-3'>{doctorLists.doctorInfo[0].ConsultationFee}</p>
-                        <p className=' text-white fs-4 mt-3'>{doctorLists.doctor[0].Title} {doctorLists.doctor[0].FirstName} {doctorLists.doctor[0].LastName}</p>
-                        {
+                    return(
+                <div class="col-4" onClick={doctorlistHandler}> 
+                    <div class="main">
+                        <div class="pic">
+                            <img src={doctorLists.doctorInfo[0].ProfilePhoto} alt="doctor-icon" />
+                            <p id="disc">{doctorLists.qualificationInfo[0].Specialist}</p>
+                        </div>
+                        <div class="name">
+                            <p>{doctorLists.doctor[0].Title} {doctorLists.doctor[0].FirstName} {doctorLists.doctor[0].LastName}</p>
+                            <p>{doctorLists.qualificationInfo[0].DegreeName}</p>
+                        </div>
+                        <div class="exp">
+                            <p>Total Exprience</p>
+                            <p>3+ Years</p>
+                        </div>
+                        <div class="lwork">
+                            <p>Work In</p>
+                            {
                           doctorLists.experienceInfo.map((ex) => (
                             ex.CurrentlyWorking &&
-                             (<p className=' text-white fs-4 mt-3'>{ex.HospitalName}</p>)
+                             (<p>{ex.HospitalName}</p>)
                           
                           )  
                           )
                         }
-                        <div>
-                          <img src={doctorLists.doctorInfo[0].ProfilePhoto} width="50" height="50" />
+                        </div>
+                        <div class="rating">
+                            <p>Total Rating (1,827)</p>
+                            <p>***** 4.9</p>
+                        </div>
+                        <div class="avl">
+                            <p>Available For</p>
+                            <p id="img"><img src="video-call.jpg" alt="video-call" />Video Call</p>
+                        </div>
+                        <div class="footer">
+                            <p>৳{doctorLists.doctorInfo[0].ConsultationFee}(Incl.VAT) per consultation</p>
                         </div>
                     </div>
-                  </div>
+                </div>
+                    );
+                   }
+                   return(
+                    <h1></h1>
                   );
                     }
-                    return(
-                      <h1></h1>
-                    );
-                      }
-                )
-                
-              }
+              )
+              
+            }
             </div>
+        </div>
+   </div>
+          </div>
+          
           </div>
         </div>
 

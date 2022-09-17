@@ -1,20 +1,22 @@
 .top-padding{
-   padding: 20px 20px 20px;
+   padding: 5px 5px 5px;
 }
 .main{
     display: grid;
     grid-template-columns: 30% 35% 35%;
     grid-gap: 1px;
     align-content: center;
-    padding-top: 10px;
-    margin-top: 10px;
-    margin-left: 10px;
+    padding-top: 5px;
+    margin-top: 5px;
+    /* margin-left: 10px; */
 }
+
 .main div{
     background-color: rgb(240, 240, 240);
     border: 1px solid rgb(159, 156, 156);
     padding: 10px;
 }
+
 .pic{
     text-align: center;
     grid-row: 1/5;
