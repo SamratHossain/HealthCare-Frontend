@@ -64,10 +64,10 @@ const DoctorsList = (props) => {
     history.push('search-result')
   }
 
-  const doctorlistHandler = (e) => {
-    e.preventDefault()
+  const doctorlistHandler = (id) => {
+    // e.preventDefault()
     // dispatch(searchDoctorsCategory(DoctorName))
-    history.push('search-result')
+    history.push(`/patient/doctorprofile-info/${id}`)
   }
 
   return(
@@ -100,11 +100,13 @@ const DoctorsList = (props) => {
                 doctorList.map((doctorLists) => {
                   if(doctorLists.qualificationInfo[0].Specialist == specialist){
                     return(
-                <div class="col-4" onClick={doctorlistHandler}> 
+                <div class="col-4">
+                  <Link to={`/patient/doctorprofile-info/${doctorLists.id}`}> 
                     <div class="main">
                         <div class="pic">
                             <img src={doctorLists.doctorInfo[0].ProfilePhoto} alt="doctor-icon" />
                             <p id="disc">{doctorLists.qualificationInfo[0].Specialist}</p>
+                            <p>{doctorLists.id}</p> 
                         </div>
                         <div class="name">
                             <p>{doctorLists.doctor[0].Title} {doctorLists.doctor[0].FirstName} {doctorLists.doctor[0].LastName}</p>
@@ -137,6 +139,8 @@ const DoctorsList = (props) => {
                             <p>৳{doctorLists.doctorInfo[0].ConsultationFee}(Incl.VAT) per consultation</p>
                         </div>
                     </div>
+                    </Link>
+                    
                 </div>
                     );
                    }

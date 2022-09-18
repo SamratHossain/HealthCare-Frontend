@@ -12,6 +12,10 @@ import {
     SEARCH_CATEGORY_SUCCESS,
     SEARCH_CATEGORY_FAILED,
 
+    DOCTOR_PROFILE_REQUEST,
+    DOCTOR_PROFILE_SUCCESS,
+    DOCTOR_PROFILE_FAILED,
+
 } from '../Constants/PatientConstants'
 
 
@@ -114,6 +118,40 @@ export const  searchDoctorsCategory = (name) => async (dispatch, getState) => {
     }catch(error){
         dispatch({
             type : SEARCH_CATEGORY_FAILED,
+            payload : error
+        })
+    }
+}
+
+export const  doctorsProfile = (id) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type : DOCTOR_PROFILE_REQUEST
+        })
+
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json',
+                Authorization : `Bearer ${userInfo.data.access}`
+            }
+        }
+
+        const {data} = await axios.get(
+            `/api/patients/view-experience/${id}`,
+            config
+        )
+
+        dispatch({
+            type : DOCTOR_PROFILE_SUCCESS,
+            payload : data
+        })
+    }catch(error){
+        dispatch({
+            type : DOCTOR_PROFILE_FAILED,
             payload : error
         })
     }

@@ -10,6 +10,10 @@ import {
     SEARCH_CATEGORY_REQUEST,
     SEARCH_CATEGORY_SUCCESS,
     SEARCH_CATEGORY_FAILED,
+
+    DOCTOR_PROFILE_REQUEST,
+    DOCTOR_PROFILE_SUCCESS,
+    DOCTOR_PROFILE_FAILED,
     
     } from '../Constants/PatientConstants'
 
@@ -92,4 +96,34 @@ export const doctorListReducer = (state = {doctorList: []}, action) => {
         default:
             return state
     }
-} 
+}
+
+
+export const doctorProfileReducer = (state = {profiles: []}, action) => {
+    switch(action.type){
+        case DOCTOR_PROFILE_REQUEST:
+            return {
+                ...state,
+                loading : true, 
+            }
+
+        case DOCTOR_PROFILE_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                doctorPrfile : action.payload
+            }
+
+        case DOCTOR_PROFILE_FAILED:
+            return {
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+        
+        default:
+            return state
+    }
+}
+
+

@@ -25,7 +25,8 @@ import UpdateExperience from "./Screen/DoctorScreen/UpdateExperience";
 import PatientHome from "./Screen/PatientScreen/PatientHome";
 import DoctorsCategory from "./Screen/PatientScreen/DoctorsCategory";
 import SearchCategory from "./Screen/PatientScreen/SearchCategory";
-import DoctorsList from "./Screen/PatientScreen/DoctorsList"
+import DoctorsList from "./Screen/PatientScreen/DoctorsList";
+import DoctorProfileInfo from "./Screen/PatientScreen/DoctorProfileInfo";
 
 const App = () => {
   return (
@@ -55,6 +56,7 @@ const App = () => {
               <Route exact path="/patient/doctors-category"> <DoctorsCategory /> </Route>
               <Route exact path="/patient/search-result"> <SearchCategory /> </Route>
               <Route exact path="/patient/doctor-list"> <DoctorsList /> </Route>
+              <Route exact path="/patient/doctorprofile-info/:id"> <DoctorProfileInfo /> </Route>
             </Switch>
         </BrowserRouter> 
       </div>
