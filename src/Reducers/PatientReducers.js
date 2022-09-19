@@ -14,6 +14,18 @@ import {
     DOCTOR_PROFILE_REQUEST,
     DOCTOR_PROFILE_SUCCESS,
     DOCTOR_PROFILE_FAILED,
+
+    DOCTOR_INFO_REQUEST,
+    DOCTOR_INFO_SUCCESS,
+    DOCTOR_INFO_FAILED,
+
+    DOCTOR_REQUEST,
+    DOCTOR_SUCCESS,
+    DOCTOR_FAILED,
+
+    DOCTOR_QUALIFICATION_REQUEST,
+    DOCTOR_QUALIFICATION_SUCCESS,
+    DOCTOR_QUALIFICATION_FAILED,
     
     } from '../Constants/PatientConstants'
 
@@ -99,7 +111,7 @@ export const doctorListReducer = (state = {doctorList: []}, action) => {
 }
 
 
-export const doctorProfileReducer = (state = {profiles: []}, action) => {
+export const doctorExperienceReducer = (state = {experiences: []}, action) => {
     switch(action.type){
         case DOCTOR_PROFILE_REQUEST:
             return {
@@ -111,10 +123,91 @@ export const doctorProfileReducer = (state = {profiles: []}, action) => {
             return {
                 ...state,
                 loading : false,
-                doctorPrfile : action.payload
+                experiences : action.payload
             }
 
         case DOCTOR_PROFILE_FAILED:
+            return {
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+        
+        default:
+            return state
+    }
+}
+
+export const doctorInfoReducer = (state = {info:[]}, action) => {
+    switch(action.type){
+        case DOCTOR_INFO_REQUEST:
+            return {
+                ...state,
+                loading : true, 
+            }
+
+        case DOCTOR_INFO_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                info : action.payload
+            }
+
+        case DOCTOR_INFO_FAILED:
+            return {
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+        
+        default:
+            return state
+    }
+}
+
+export const doctorsReducer = (state = {doctor:[]}, action) => {
+    switch(action.type){
+        case DOCTOR_REQUEST:
+            return {
+                ...state,
+                loading : true, 
+            }
+
+        case DOCTOR_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                doctor : action.payload
+            }
+
+        case DOCTOR_FAILED:
+            return {
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+        
+        default:
+            return state
+    }
+}
+
+export const doctorQualificationReducer = (state = {qualification:[]}, action) => {
+    switch(action.type){
+        case DOCTOR_QUALIFICATION_REQUEST:
+            return {
+                ...state,
+                loading : true, 
+            }
+
+        case DOCTOR_QUALIFICATION_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                qualification : action.payload
+            }
+
+        case DOCTOR_QUALIFICATION_FAILED:
             return {
                 ...state,
                 loading : false,

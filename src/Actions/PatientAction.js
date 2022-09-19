@@ -16,6 +16,18 @@ import {
     DOCTOR_PROFILE_SUCCESS,
     DOCTOR_PROFILE_FAILED,
 
+    DOCTOR_INFO_REQUEST,
+    DOCTOR_INFO_SUCCESS,
+    DOCTOR_INFO_FAILED,
+
+    DOCTOR_REQUEST,
+    DOCTOR_SUCCESS,
+    DOCTOR_FAILED,
+
+    DOCTOR_QUALIFICATION_REQUEST,
+    DOCTOR_QUALIFICATION_SUCCESS,
+    DOCTOR_QUALIFICATION_FAILED,
+
 } from '../Constants/PatientConstants'
 
 
@@ -123,7 +135,7 @@ export const  searchDoctorsCategory = (name) => async (dispatch, getState) => {
     }
 }
 
-export const  doctorsProfile = (id) => async (dispatch, getState) => {
+export const  doctorsExperience = (id) => async (dispatch, getState) => {
     try{
         dispatch({
             type : DOCTOR_PROFILE_REQUEST
@@ -152,6 +164,109 @@ export const  doctorsProfile = (id) => async (dispatch, getState) => {
     }catch(error){
         dispatch({
             type : DOCTOR_PROFILE_FAILED,
+            payload : error
+        })
+    }
+}
+
+
+export const  doctorsInfo = (id) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type : DOCTOR_INFO_REQUEST
+        })
+
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json',
+                Authorization : `Bearer ${userInfo.data.access}`
+            }
+        }
+
+        const {data} = await axios.get(
+            `/api/patients/view-doctorinfo/${id}`,
+            config
+        )
+
+        dispatch({
+            type : DOCTOR_INFO_SUCCESS,
+            payload : data
+        })
+    }catch(error){
+        dispatch({
+            type : DOCTOR_INFO_FAILED,
+            payload : error
+        })
+    }
+}
+
+export const  doctorAction = (id) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type : DOCTOR_REQUEST
+        })
+
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json',
+                Authorization : `Bearer ${userInfo.data.access}`
+            }
+        }
+
+        const {data} = await axios.get(
+            `/api/patients/view-doctor/${id}`,
+            config
+        )
+
+        dispatch({
+            type : DOCTOR_SUCCESS,
+            payload : data
+        })
+    }catch(error){
+        dispatch({
+            type : DOCTOR_FAILED,
+            payload : error
+        })
+    }
+}
+
+export const  doctorQualification = (id) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type : DOCTOR_QUALIFICATION_REQUEST
+        })
+
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json',
+                Authorization : `Bearer ${userInfo.data.access}`
+            }
+        }
+
+        const {data} = await axios.get(
+            `/api/patients/view-qualification/${id}`,
+            config
+        )
+
+        dispatch({
+            type : DOCTOR_QUALIFICATION_SUCCESS,
+            payload : data
+        })
+    }catch(error){
+        dispatch({
+            type : DOCTOR_QUALIFICATION_FAILED,
             payload : error
         })
     }

@@ -20,7 +20,10 @@ import {
     findDoctorReducer,
     searchCategoryReducer,
     doctorListReducer,
-    doctorProfileReducer,
+    doctorExperienceReducer,
+    doctorInfoReducer,
+    doctorsReducer,
+    doctorQualificationReducer
  } from "./Reducers/PatientReducers"
 
 
@@ -42,7 +45,10 @@ const rootReducer = combineReducers({
     doctorCategories : findDoctorReducer,
     searchCategoryResult : searchCategoryReducer,
     doctorListInformation : doctorListReducer,
-    doctorProfile : doctorProfileReducer,
+    doctorExperience : doctorExperienceReducer,
+    doctorInfo : doctorInfoReducer,
+    doctors : doctorsReducer,
+    qualifications : doctorQualificationReducer,
 })
 
 const userTokenFromLocalStorage = localStorage.getItem('UserInfo')?

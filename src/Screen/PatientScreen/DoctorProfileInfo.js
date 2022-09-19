@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import Navbar from '../../Components/Patient/Navbar';
 import '../../CSS/Patient/doctorprofileinfo.css'
-import { doctorsProfile } from '../../Actions/PatientAction';
+import { doctorsExperience, doctorsInfo, doctorAction, doctorQualification } from '../../Actions/PatientAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -13,8 +13,26 @@ const DoctorProfileInfo = () => {
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
 
-  const doctorProfile = useSelector(state => state.doctorProfile)
-  const {profiles} = doctorProfile
+  const doctorExperience = useSelector(state => state.doctorExperience)
+  const {experiences} = doctorExperience
+
+  var currentHospital
+  experiences.map((ex) =>{
+    if(ex.CurrentlyWorking){
+        currentHospital = ex.HospitalName
+    }
+  })
+
+  const doctorInfo = useSelector(state => state.doctorInfo)
+  const {info} = doctorInfo
+
+  const doctors = useSelector(state => state.doctors)
+  const {doctor} = doctors
+
+  const qualifications = useSelector(state => state.qualifications)
+  const {qualification} = qualifications
+
+  console.log("info is: ",info)
 
   const dispatch = useDispatch()
 
@@ -22,7 +40,10 @@ const DoctorProfileInfo = () => {
 
   useEffect(() => {
     if(userInfo){
-        dispatch(doctorsProfile(params.id))
+        dispatch(doctorsExperience(params.id))
+        dispatch(doctorsInfo(params.id))
+        dispatch(doctorAction(params.id))
+        dispatch(doctorQualification(params.id))
     }else{
         history.push('/login')
     }
@@ -36,11 +57,12 @@ const DoctorProfileInfo = () => {
                 <div class="col">
                     <div class="main">
                         <div class="pic">
-                            <img src="" alt="doctor-icon" />
+                            <img src={info.ProfilePhoto} alt="doctor-icon" />
                             <div>
-                                <p>Dr. Khaled Bin Shahabuddin</p>
-                                <p>MBBS</p>
-                                <p>General Physician, Pediatrics, Covid Unit</p>
+                                <p>{doctor.Title} {doctor.FirstName} {doctor.LastName}</p>
+                                <p>{qualification.DegreeName}</p>
+                                <p>{qualification.Specialist}</p>
+                                
                             </div>
                         </div>
                         <div class="exp">
@@ -48,19 +70,26 @@ const DoctorProfileInfo = () => {
                             <p>3+ Years</p>
                         </div>
                         <div class="lwork">
-                            <p>Last Work In</p>
-                            <p>BLOOD MAN</p>
+                            {
+                                
+                            }
+                            <p>Work In</p>
+                            <p>{currentHospital}</p>
                         </div>
                         <div class="rating">
                             <p>Total Rating (1,827)</p>
                             <p>***** 4.9</p>
+                            <br></br>
+                            <br></br>
+                            <p>BMDC Number</p>
+                            <p>{doctor.RegistrationNumberBMDC}</p>
                         </div>
                         <div class="avl">
                             <p>Available For</p>
                             <p id="img"><img src="" alt="video-call" />Video Call</p>
                         </div>
                         <div class="footer">
-                            <p>৳150(Incl.VAT) per consultation</p>
+                            <p>৳{info.ConsultationFee}(Incl.VAT) per consultation</p>
                         </div>
                     </div>
                 </div>
@@ -72,26 +101,26 @@ const DoctorProfileInfo = () => {
             <div>
                 <p  class="divhead">Info</p>
                 <div class="row" id="D-info">
-                    <p>Hey I am Dr. Khaled Bin Shahabuddin</p>
-                    <p>Assalamalaikum. I m Dr.Khaled Bin Shahabuddin Sunny. I completed My M.B.B.S. from Anwer Khan Modern Medical College and Hospital in 2017.After that i Completed 1year Internship programme in 2018.After that I completed 6months Honorary Programme from Medicine Department in 2019.After that i completed 6months Honorary programme from ENT Department in 2020.From the 1st January 2020 to 30th june 2020 i worked as Medical Officer in ENT Department in Anwer Khan Modern Medical Hospital.Now i m working As a Medical Officer In an NGO named PD Foundation in Medicine Department.</p>
+                    <p>{info.About}</p>
+                    
                 </div>
-                {/* <hr> */}
+                
                 <div class="row" id="glance">
                     <div class="col-6">
                         <p class="key">Consultation Fee :</p>
-                        <p class="value">৳150</p>
+                        <p class="value">৳{info.ConsultationFee}</p>
                         <p class="key">Patient Attendence :</p>
                         <p class="value">20267</p>
                         <p class="key">Consultation Time :</p>
-                        <p class="value">11:00 AM - 01:00 PM</p>
+                        <p class="value">{info.AvailableTime}</p>
                     </div>
                     <div class="col-6">
                         <p class="key">Follow-up Fee :</p>
-                        <p class="value">৳100</p>
+                        <p class="value">৳{info.FollowUpFee}(Within{info.WithinDuration})</p>
                         <p class="key">Availability :</p>
-                        <p class="value">Sat-Fri</p>
+                        <p class="value">{info.AvailableDay}</p>
                         <p class="key">Doctor Code :</p>
-                        <p class="value">DT2056</p>
+                        <p class="value">{info.user}</p>
                     </div>
                 </div>
             </div>
@@ -99,73 +128,35 @@ const DoctorProfileInfo = () => {
         <div class="col-4">
             <div>
                 <p  class="divhead">Exprience</p>
-                <p id="exp">Dhaka Medical,Dhaka</p>
-                <div class="row">
+                
+                 {
+                    experiences.map((experience) => (
+                        <div>
+                        <p id="exp">{experience.HospitalName}</p>
+                        <div class="row">
                     <div class="col-12">
                         <div class="row">
                             <div class="col-4">
                                 <p class="key">Designation :</p>
-                                <p class="value">Medical Officer</p>
+                                <p class="value">{experience.Designation}</p>
                                 <p class="key">Period :</p>
-                                <p class="value">1 Years 1 Month</p>
-                            </div>
-                            <div class="col-4">
-                                <p class="key">Department:</p>
-                                <p class="value">Covid Department</p>
-                            </div>
-                            <div class="col-4">
-                                <p class="key">Employment Period :</p>
-                                <p class="value">Jul 11, 2020 - Aug 31,2021</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* <hr> */}
-                <p id="exp">Imperial Hospital,Chittagong</p>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-4">
-                                <p class="key">Designation :</p>
-                                <p class="value">Medical Officer</p>
-                                <p class="key">Period :</p>
-                                <p class="value">1 Years 1 Month</p>
+                                <p class="value">{experience.EmploymentPeriod}</p>
                             </div>
                             <div class="col-4">
                                 <p class="key">Department :</p>
-                                <p class="value">Covid Department</p>
+                                <p class="value">{experience.Department}</p>
                             </div>
                             <div class="col-4">
                                 <p class="key">Employment Period :</p>
-                                <p class="value">Jul 11, 2020 - Aug 31,2021</p>
+                                <p class="value">{experience.From} - {experience.To}</p>
                             </div>
                         </div>
                         
                     </div>
                 </div>
-                {/* <hr> */}
-                <p id="exp">Dhaka National Medical College</p>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-4">
-                                <p class="key">Designation :</p>
-                                <p class="value">Medical Officer</p>
-                                <p class="key">Period :</p>
-                                <p class="value">1 Years 1 Month</p>
-                            </div>
-                            <div class="col-4">
-                                <p class="key">Department :</p>
-                                <p class="value">Covid Department</p>
-                            </div>
-                            <div class="col-4">
-                                <p class="key">Employment Period :</p>
-                                <p class="value">Jul 11, 2020 - Aug 31,2021</p>
-                            </div>
-                        </div>
-                        
-                    </div>
                 </div>
+                    ))
+                 }
                 {/* <hr> */}
             </div>
         </div>
