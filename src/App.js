@@ -27,6 +27,7 @@ import DoctorsCategory from "./Screen/PatientScreen/DoctorsCategory";
 import SearchCategory from "./Screen/PatientScreen/SearchCategory";
 import DoctorsList from "./Screen/PatientScreen/DoctorsList";
 import DoctorProfileInfo from "./Screen/PatientScreen/DoctorProfileInfo";
+import Chat from "./Screen/PatientScreen/Chat";
 
 const App = () => {
   return (
@@ -57,6 +58,7 @@ const App = () => {
               <Route exact path="/patient/search-result"> <SearchCategory /> </Route>
               <Route exact path="/patient/doctor-list"> <DoctorsList /> </Route>
               <Route exact path="/patient/doctorprofile-info/:id"> <DoctorProfileInfo /> </Route>
+              <Route exact path="/patient/chat/:id"> <Chat /> </Route>
             </Switch>
         </BrowserRouter> 
       </div>

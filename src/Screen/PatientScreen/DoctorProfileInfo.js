@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom'
 import Navbar from '../../Components/Patient/Navbar';
 import '../../CSS/Patient/doctorprofileinfo.css'
 import { doctorsExperience, doctorsInfo, doctorAction, doctorQualification } from '../../Actions/PatientAction';
@@ -86,7 +86,7 @@ const DoctorProfileInfo = () => {
                         </div>
                         <div class="avl">
                             <p>Available For</p>
-                            <p id="img"><img src="" alt="video-call" />Video Call</p>
+                            <Link to={`/patient/chat/${params.id}`} style={{ textDecoration: 'none' }}>Send Message</Link>
                         </div>
                         <div class="footer">
                             <p>৳{info.ConsultationFee}(Incl.VAT) per consultation</p>

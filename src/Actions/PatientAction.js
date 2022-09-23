@@ -28,6 +28,10 @@ import {
     DOCTOR_QUALIFICATION_SUCCESS,
     DOCTOR_QUALIFICATION_FAILED,
 
+    SEND_MESSAGE_REQUEST,
+    SEND_MESSAGE_SUCCESS,
+    SEND_MESSAGE_FAILED,
+
 } from '../Constants/PatientConstants'
 
 
@@ -267,6 +271,41 @@ export const  doctorQualification = (id) => async (dispatch, getState) => {
     }catch(error){
         dispatch({
             type : DOCTOR_QUALIFICATION_FAILED,
+            payload : error
+        })
+    }
+}
+
+export const  sendMessageAdction = (message, user_from, user_to) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type : SEND_MESSAGE_REQUEST
+        })
+
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json',
+                Authorization : `Bearer ${userInfo.data.access}`
+            }
+        }
+
+        const {data} = await axios.post(
+            `/api/chats/send-message/`,
+            {'message':message, 'user_from':user_from, 'user_to':user_to},
+            config
+        )
+
+        dispatch({
+            type : SEND_MESSAGE_SUCCESS,
+            payload : data
+        })
+    }catch(error){
+        dispatch({
+            type : SEND_MESSAGE_FAILED,
             payload : error
         })
     }

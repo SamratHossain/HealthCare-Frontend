@@ -70,7 +70,7 @@ const DoctorsCategory = (props) => {
                     <Link to={{
                       pathname:'/patient/doctor-list',
                       state: {spname: category.name}
-                    }}>
+                    }} style={{ textDecoration: 'none' }}>
                       <div className='rounded my-2 p-3 category' >
                           <h5 className='text-center text-white fs-4 fw-bold'>{category.name}</h5>
                           <p className=' text-white fs-4 mt-3'>{category.about}</p>

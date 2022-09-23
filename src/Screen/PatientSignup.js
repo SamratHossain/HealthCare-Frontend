@@ -29,7 +29,7 @@ const PatientSignup = () => {
                     <label className="form-label"> First Name :</label>
                     <input className='form-control mb-2'
                            type='text' 
-                           placeholder='Enter Your First Name'
+                           placeholder='Write Your Message'
                            value={firstName}
                            onChange={(e) => setFirstName(e.target.value)}
                     />

@@ -26,6 +26,10 @@ import {
     DOCTOR_QUALIFICATION_REQUEST,
     DOCTOR_QUALIFICATION_SUCCESS,
     DOCTOR_QUALIFICATION_FAILED,
+
+    SEND_MESSAGE_REQUEST,
+    SEND_MESSAGE_SUCCESS,
+    SEND_MESSAGE_FAILED,
     
     } from '../Constants/PatientConstants'
 
@@ -205,6 +209,33 @@ export const doctorQualificationReducer = (state = {qualification:[]}, action) =
                 ...state,
                 loading : false,
                 qualification : action.payload
+            }
+
+        case DOCTOR_QUALIFICATION_FAILED:
+            return {
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+        
+        default:
+            return state
+    }
+}
+
+export const sendMessageReducer = (state = {messages:[]}, action) => {
+    switch(action.type){
+        case DOCTOR_QUALIFICATION_REQUEST:
+            return {
+                ...state,
+                loading : true, 
+            }
+
+        case DOCTOR_QUALIFICATION_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                messages : action.payload
             }
 
         case DOCTOR_QUALIFICATION_FAILED:

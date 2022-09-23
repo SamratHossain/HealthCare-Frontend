@@ -101,7 +101,7 @@ const DoctorsList = (props) => {
                   if(doctorLists.qualificationInfo[0].Specialist == specialist){
                     return(
                 <div class="col-4">
-                  <Link to={`/patient/doctorprofile-info/${doctorLists.id}`}> 
+                  <Link to={`/patient/doctorprofile-info/${doctorLists.id}`} style={{ textDecoration: 'none' }}> 
                     <div class="main">
                         <div class="pic">
                             <img src={doctorLists.doctorInfo[0].ProfilePhoto} alt="doctor-icon" />

@@ -23,7 +23,8 @@ import {
     doctorExperienceReducer,
     doctorInfoReducer,
     doctorsReducer,
-    doctorQualificationReducer
+    doctorQualificationReducer,
+    sendMessageReducer,
  } from "./Reducers/PatientReducers"
 
 
@@ -49,6 +50,7 @@ const rootReducer = combineReducers({
     doctorInfo : doctorInfoReducer,
     doctors : doctorsReducer,
     qualifications : doctorQualificationReducer,
+    sendMessage : sendMessageReducer,
 })
 
 const userTokenFromLocalStorage = localStorage.getItem('UserInfo')?
