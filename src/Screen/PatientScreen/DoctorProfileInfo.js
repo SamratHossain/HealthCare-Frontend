@@ -52,6 +52,10 @@ const DoctorProfileInfo = () => {
   return (
     <div>
       <Navbar />
+      <div>
+        {/* start */}
+        {/* end */}
+      </div>
     <div class="container-fluid top-padding">
         <div class="row">
                 <div class="col">
@@ -85,8 +89,8 @@ const DoctorProfileInfo = () => {
                             <p>{doctor.RegistrationNumberBMDC}</p>
                         </div>
                         <div class="avl">
-                            <p>Available For</p>
-                            <Link to={`/patient/chat/${params.id}`} style={{ textDecoration: 'none' }}>Send Message</Link>
+                            <p>Contact on Whatsapp</p>
+                            <Link to={`/patient/chat/:${params.id}`}><button className='btn btn-success px-3 py-2 fs-9 fw-bold' type='submit'>Send Message</button></Link>
                         </div>
                         <div class="footer">
                             <p>৳{info.ConsultationFee}(Incl.VAT) per consultation</p>

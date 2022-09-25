@@ -1,4 +1,8 @@
-.top-padding{
+body{
+    
+    background-color: rgb(227, 227, 234);
+ }
+ .top-padding{
     padding: 20px 20px 20px;
  }
  .main{
@@ -11,9 +15,10 @@
      margin-left: 10px;
  }
  .main div{
-     background-color: rgb(240, 240, 240);
+     background-color: rgb(243, 237, 147);
      border: 1px solid rgb(159, 156, 156);
      padding: 10px;
+     border-radius: 20px;
  }
  .pic{
      text-align: left;
@@ -58,8 +63,8 @@
      margin-bottom: 10px;
  }
  .main .pic img{
-     height: 50px;
-     width: 50px;
+     height: 110px;
+     width: 100px;
      border-radius: 50%;
      margin-top: 5px;
      padding-top: 10px;
@@ -68,6 +73,14 @@
  .avl #img img{
      height: 15px;
      width: 15px;
+ }
+ .avl #img{
+     background-color: rgb(108, 233, 30);
+     padding: 3px;
+     width: 25%;
+     padding-left: 10px;
+     border-radius: 10px;
+     font-style: italic;
  }
  #info{
      height: 100%;
@@ -94,8 +107,13 @@
      text-align: center;
      font-weight: bold;
      font-size: 20px;
-     padding-top: 10px;
+     padding: 10px;
      text-decoration: underline;
+     font-style: italic;
+     font-family: Arial, Helvetica, sans-serif;
+     background-color: rgb(117, 170, 216);
+     border-radius: 5px;
+     margin-top: 5px;
  }
  #D-info{
      text-align: justify;
@@ -133,5 +151,27 @@
  }
  .star{
      text-align: right;
+     color: rgb(132, 124, 5);
+     font-size: 40px;
  }
+ .inexre{
+     padding-left: 30px;
+     padding-right: 30px;
+ }
+ .d_div{
+     box-shadow: 7px 7px 8px rgb(73, 81, 73);
+     border-radius: 10px;
  
+ }
+ .r1_div{
+     border: 1px solid ;
+     border-radius: 6px;
+     background-color: rgb(207, 207, 233);
+     margin-left: 1px;
+     margin-right: 1px;
+ }
+ .r_div{
+     border: 1px solid ;
+     border-radius: 6px;
+     background-color: rgb(207, 207, 233);
+ }

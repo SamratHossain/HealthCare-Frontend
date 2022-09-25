@@ -25,7 +25,7 @@ const Select = () => {
 
     return (
         <div className='container-fluid'>
-            <div className='main bg-info'>
+            <div className='maindiv bg-info'>
                 <div className='ms-3 position-relative me-5'>
                     <h2 className='text-white fw-bold ts-1 d-inline'>E-HealthCare</h2>
                     
@@ -37,7 +37,7 @@ const Select = () => {
                                        fs-1
                                        fw-bold
                                        mt-5'
-                                       >Instant Video Consultation</h2>
+                                       >Instant Consultation</h2>
 
                         <h2 className='m-2'>Anytime Anywhere</h2>
                     

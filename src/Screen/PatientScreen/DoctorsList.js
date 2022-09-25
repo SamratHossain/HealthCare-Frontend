@@ -90,34 +90,32 @@ const DoctorsList = (props) => {
               <button type="submit" className="btn btn-success mb-3">Search</button>
             </div>
           </form>
-        
+          {/* start */}
           <div>
-            
-          <div class="container-fluid">
+          <div class="container-fluid top-padding">
         <div class="row">
-            <div class="row">    
+            <div class="row">
             {
                 doctorList.map((doctorLists) => {
                   if(doctorLists.qualificationInfo[0].Specialist == specialist){
                     return(
-                <div class="col-4">
-                  <Link to={`/patient/doctorprofile-info/${doctorLists.id}`} style={{ textDecoration: 'none' }}> 
+                <div class="col-4 d_div">
+                  <Link to={`/patient/doctorprofile-info/${doctorLists.id}`} style={{ textDecoration: 'none' }}>
                     <div class="main">
                         <div class="pic">
                             <img src={doctorLists.doctorInfo[0].ProfilePhoto} alt="doctor-icon" />
-                            <p id="disc">{doctorLists.qualificationInfo[0].Specialist}</p>
-                            <p>{doctorLists.id}</p> 
+                            <p class="key">{doctorLists.qualificationInfo[0].Specialist}</p>
                         </div>
                         <div class="name">
-                            <p>{doctorLists.doctor[0].Title} {doctorLists.doctor[0].FirstName} {doctorLists.doctor[0].LastName}</p>
+                            <p class="key">{doctorLists.doctor[0].Title} {doctorLists.doctor[0].FirstName} {doctorLists.doctor[0].LastName}</p>
                             <p>{doctorLists.qualificationInfo[0].DegreeName}</p>
                         </div>
                         <div class="exp">
-                            <p>Total Exprience</p>
-                            <p>3+ Years</p>
+                            <p class="key">Total Exprience :</p>
+                            <p class="value">3+ Years</p>
                         </div>
                         <div class="lwork">
-                            <p>Work In</p>
+                            <p class="key">Work In :</p>
                             {
                           doctorLists.experienceInfo.map((ex) => (
                             ex.CurrentlyWorking &&
@@ -128,21 +126,22 @@ const DoctorsList = (props) => {
                         }
                         </div>
                         <div class="rating">
-                            <p>Total Rating (1,827)</p>
-                            <p>***** 4.9</p>
+                            <p class="key">Total Rating (1,827) :</p>
+                            <p class="key"> 4.9</p>
+                            <p class="star">*****</p>
                         </div>
                         <div class="avl">
-                            <p>Available For</p>
-                            <p id="img"><img src="video-call.jpg" alt="video-call" />Video Call</p>
+                            <p class="key">Available For :</p>
+                            <p>Message</p>
                         </div>
                         <div class="footer">
-                            <p>৳{doctorLists.doctorInfo[0].ConsultationFee}(Incl.VAT) per consultation</p>
+                            {/* <p><span style="color: rgb(56, 56, 252);font-size: 20px; font-weight: bold;">৳150</span>(Incl.VAT) per consultation</p> */}
+                            <p><span >৳{doctorLists.doctorInfo[0].ConsultationFee}</span>(Incl.VAT) per consultation</p>
                         </div>
                     </div>
                     </Link>
-                    
                 </div>
-                    );
+                );
                    }
                    return(
                     <h1></h1>
@@ -155,7 +154,7 @@ const DoctorsList = (props) => {
         </div>
    </div>
           </div>
-          
+        {/* end */}  
           </div>
         </div>
 

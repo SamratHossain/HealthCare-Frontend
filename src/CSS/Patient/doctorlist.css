@@ -1,72 +1,84 @@
 .top-padding{
-   padding: 5px 5px 5px;
-}
-.main{
-    display: grid;
-    grid-template-columns: 30% 35% 35%;
-    grid-gap: 1px;
-    align-content: center;
-    padding-top: 5px;
-    margin-top: 5px;
-    /* margin-left: 10px; */
-}
-
-.main div{
-    background-color: rgb(240, 240, 240);
-    border: 1px solid rgb(159, 156, 156);
-    padding: 10px;
-}
-
-.pic{
-    text-align: center;
-    grid-row: 1/5;
-    grid-column: 1/2;
-    font-size: 12px;
-}
-.name{
-    text-align: left;
-    grid-column: 2/4;
-    font-size: 12px;
-}
-.exp{
-    text-align: left;
-    grid-column: 2/3;
-    grid-row: 2/3;
-    font-size: 12px;
-}
-.rating{
-    text-align: left;
-    grid-column: 3/4;
-    grid-row: 2/5;
-    font-size: 12px;
-}
-.lwork{
-    text-align: left;
-    grid-column: 2/3;
-    grid-row: 3/4;
-    font-size: 12px;
-}
-.avl{
-    text-align: left;
-    grid-column: 2/3;
-    grid-row: 4/5;
-    font-size: 12px;
-}
-.footer{
-    text-align: center;
-    grid-column: 1/4;
-    grid-row: 6/7;
-    font-size: 12px;
-    margin-bottom: 10px;
-}
-.main .pic img{
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin-top: 5px;
-    padding-top: 10px;
-}
-.avl #img img{
-    height: 15px;
-    width: 15px;
-}
+    padding: 20px 20px 20px;
+    background-color: rgb(186, 186, 193);
+ }
+ .main{
+     display: grid;
+     grid-template-columns: 30% 35% 35%;
+     grid-gap: 1px;
+     align-content: center;
+     padding-top: 10px;
+     margin-top: 10px;
+     margin-left: 10px;
+ }
+ .main div{
+     background-color: rgb(243, 237, 147);
+     border: 1px solid rgb(159, 156, 156);
+     padding: 10px;
+     border-radius: 20px;
+ }
+ .pic{
+     text-align: center;
+     grid-row: 1/5;
+     grid-column: 1/2;
+     font-size: 14px;
+ }
+ .name{
+     text-align: left;
+     grid-column: 2/4;
+     font-size: 14px;
+ }
+ .exp{
+     text-align: left;
+     grid-column: 2/3;
+     grid-row: 2/3;
+     font-size: 14px;
+ }
+ .rating{
+     text-align: left;
+     grid-column: 3/4;
+     grid-row: 2/5;
+     font-size: 14px;
+ }
+ .lwork{
+     text-align: left;
+     grid-column: 2/3;
+     grid-row: 3/4;
+     font-size: 14px;
+ }
+ .avl{
+     text-align: left;
+     grid-column: 2/3;
+     grid-row: 4/5;
+     font-size: 14px;
+ }
+ .footer{
+     text-align: center;
+     grid-column: 1/4;
+     grid-row: 6/7;
+     font-size: 14px;
+     margin-bottom: 10px;
+ }
+ .main .pic img{
+     height: 100px;
+     width: 90px;
+     border-radius: 50%;
+     margin-top: 5px;
+     padding-top: 10px;
+ }
+ .avl #img img{
+     height: 15px;
+     width: 15px;
+ }
+ .key{
+     font-weight: bold;
+ }
+ .star{
+     text-align: left;
+     color: rgb(4, 92, 12);
+     font-size: 40px;
+ }
+ .d_div{
+     box-shadow: 7px 7px 8px rgb(73, 81, 73);
+     border-radius: 10px;
+ }

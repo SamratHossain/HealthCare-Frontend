@@ -29,7 +29,7 @@ const DoctorNavbar = () => {
                   <NavLink to="/doctor/home" className="text-decoration-none ">Home</NavLink>
                 </li>
                 <li class="nav-item mx-3">
-                  <NavLink to="/doctor/message" className="text-decoration-none">Message</NavLink>
+                  <NavLink to="/doctor/doctor-chat" className="text-decoration-none">Message</NavLink>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle me-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

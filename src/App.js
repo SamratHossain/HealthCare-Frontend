@@ -21,6 +21,7 @@ import UpdatePersonalInfo from "./Screen/DoctorScreen/UpdatePersonalInfo";
 import UpdateDoctorInfo from "./Screen/DoctorScreen/UpdateDoctorInfo";
 import UpdateQualification from "./Screen/DoctorScreen/UpdateQualification";
 import UpdateExperience from "./Screen/DoctorScreen/UpdateExperience";
+import DoctorChat from "./Screen/DoctorScreen/DoctorChat";
 
 import PatientHome from "./Screen/PatientScreen/PatientHome";
 import DoctorsCategory from "./Screen/PatientScreen/DoctorsCategory";
@@ -52,6 +53,7 @@ const App = () => {
               <Route exact path="/doctor/signup/consultationfee"> <ConsultationFee /> </Route>
               <Route exact path="/doctor/signup/nidcard"> <NidCard /> </Route>
               <Route exact path="/doctor/signup/done"> <Done /> </Route>
+              <Route exact path="/doctor/doctor-chat"> <DoctorChat /> </Route>
 
               <Route exact path="/patient/home"> <PatientHome /> </Route>
               <Route exact path="/patient/doctors-category"> <DoctorsCategory /> </Route>

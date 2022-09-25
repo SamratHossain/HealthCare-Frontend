@@ -32,6 +32,10 @@ import {
     SEND_MESSAGE_SUCCESS,
     SEND_MESSAGE_FAILED,
 
+    GET_MESSAGE_REQUEST,
+    GET_MESSAGE_SUCCESS,
+    GET_MESSAGE_FAILED,
+
 } from '../Constants/PatientConstants'
 
 
@@ -276,7 +280,7 @@ export const  doctorQualification = (id) => async (dispatch, getState) => {
     }
 }
 
-export const  sendMessageAdction = (message, user_from, user_to) => async (dispatch, getState) => {
+export const  sendMessageAdction = (message, mobile) => async (dispatch, getState) => {
     try{
         dispatch({
             type : SEND_MESSAGE_REQUEST
@@ -295,7 +299,7 @@ export const  sendMessageAdction = (message, user_from, user_to) => async (dispa
 
         const {data} = await axios.post(
             `/api/chats/send-message/`,
-            {'message':message, 'user_from':user_from, 'user_to':user_to},
+            {'message':message, 'mobile':mobile},
             config
         )
 
@@ -306,6 +310,42 @@ export const  sendMessageAdction = (message, user_from, user_to) => async (dispa
     }catch(error){
         dispatch({
             type : SEND_MESSAGE_FAILED,
+            payload : error
+        })
+    }
+}
+
+
+export const  getMessageAdction = (user_from, user_to) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type : GET_MESSAGE_REQUEST
+        })
+
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json',
+                Authorization : `Bearer ${userInfo.data.access}`
+            }
+        }
+
+        const {data} = await axios.post(
+            `/api/chats/get-message/`,
+            {'user_from':user_from, 'user_to':user_to},
+            config
+        )
+
+        dispatch({
+            type : GET_MESSAGE_SUCCESS,
+            payload : data
+        })
+    }catch(error){
+        dispatch({
+            type : GET_MESSAGE_FAILED,
             payload : error
         })
     }

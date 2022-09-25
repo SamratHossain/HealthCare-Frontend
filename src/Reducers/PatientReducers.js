@@ -30,6 +30,10 @@ import {
     SEND_MESSAGE_REQUEST,
     SEND_MESSAGE_SUCCESS,
     SEND_MESSAGE_FAILED,
+
+    GET_MESSAGE_REQUEST,
+    GET_MESSAGE_SUCCESS,
+    GET_MESSAGE_FAILED,
     
     } from '../Constants/PatientConstants'
 
@@ -225,20 +229,47 @@ export const doctorQualificationReducer = (state = {qualification:[]}, action) =
 
 export const sendMessageReducer = (state = {messages:[]}, action) => {
     switch(action.type){
-        case DOCTOR_QUALIFICATION_REQUEST:
+        case SEND_MESSAGE_REQUEST:
             return {
                 ...state,
                 loading : true, 
             }
 
-        case DOCTOR_QUALIFICATION_SUCCESS:
+        case SEND_MESSAGE_SUCCESS:
             return {
                 ...state,
                 loading : false,
                 messages : action.payload
             }
 
-        case DOCTOR_QUALIFICATION_FAILED:
+        case SEND_MESSAGE_FAILED:
+            return {
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+        
+        default:
+            return state
+    }
+}
+
+export const getMessageReducer = (state = {messages:[]}, action) => {
+    switch(action.type){
+        case GET_MESSAGE_REQUEST:
+            return {
+                ...state,
+                loading : true, 
+            }
+
+        case GET_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                loading : false,
+                messages : action.payload
+            }
+
+        case GET_MESSAGE_FAILED:
             return {
                 ...state,
                 loading : false,
